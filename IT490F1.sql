@@ -1,15 +1,21 @@
 CREATE TABLE `brackets` (
-  `bracketID` smallint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `bracketID` smallint NOT NULL AUTO_INCREMENT,
+  'bracketName' varchar(40) NOT NULL,
+) DEFAULT CHARSET=utf8mb4;
 
 
 CREATE TABLE `users` (
-  `userID` tinyint NOT NULL,
+  `userID` int NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
-  `password` varchar(40) NOT NULL,
-  `screenName` varchar(20) NOT NULL,
-  `friendCode` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `hashPass` varchar(40) NOT NULL,
+  'email' varchar (40) NOT NULL,
+) DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE 'races' (
+  'raceName' varchar(40) NOT NULL,
+  'raceLocation' varchar(50) NOT NULL,
+  'raceDT' datetime NOT NULL,
+) DEFAULT CHARSET=utf8mb4
 
 
 ALTER TABLE `brackets`
@@ -20,12 +26,6 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`userID`);
 
 
-ALTER TABLE `brackets`
-  MODIFY `bracketID` smallint NOT NULL AUTO_INCREMENT;
-
-
-ALTER TABLE `users`
-  MODIFY `userID` tinyint NOT NULL AUTO_INCREMENT;
 
 
 
