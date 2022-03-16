@@ -1,14 +1,15 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 'off');
 ini_set('log_errors', 'On');
-    ini_set('error_log', dirname(__FILE__).'/../logging/log.txt');
-
+ini_set('error_log', dirname(__FILE__).'/../logging/errorlog.txt');
 
     logAndSendErrors();
     //Requried files
-    require_once('../rabbitmqphp_example/path.inc');
-    require_once('../rabbitmqphp_example/get_host_info.inc');
-    require_once('../rabbitmqphp_example/rabbitMQLib.inc');
+    require_once('/home/parallels/git/IT490F1/IT490F1/path.inc');
+    require_once('/home/parallels/git/IT490F1/IT490F1/get_host_info.inc');
+    require_once('/home/parallels/git/IT490F1/IT490F1/rabbitMQLib.inc');
     require_once('rabbitMQClient.php');
     require_once('dbConnection.php');
 
