@@ -1,4 +1,14 @@
 <?php
+ use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'PHPMailer-master/src/Exception.php';
+require 'PHPMailer-master/src/PHPMailer.php';
+require 'PHPMailer-master/src/SMTP.php';
+
+$obj =  new DateTime();
+$DateAndTime = $obj->format("d-m-Y h:i:sp");
+//echo $DateAndTime;
+//echo PHP_EOL; 
 
 $curl = curl_init();
 
@@ -26,10 +36,10 @@ if ($err) {
 
     foreach($array['MRData']['RaceTable']['Races'] as &$value) {
         //echo "<br>";
-        //$RaceName = $value['raceName'];
+        $RaceName = $value['raceName'];
        // echo "Race Name: ".$RaceName;
         //echo "<br>";
-       // $Country = $value['Circuit']['circuitName'];
+        $Country = $value['Circuit']['circuitName'];
        // echo "Circuit Name: ".$Country;
 	
 	//echo "<br>";
@@ -42,17 +52,48 @@ if ($err) {
 
 	$dateA = "$date $time";
 	    echo $dateA;
-	$dateB = "2022-03-16 12:12:12";
+	    $dateB =   $DateAndTime;   
+     	    //'2022-06-19 12:12:12';
+		    
+	    
 	   $timediff = strtotime($dateA) - strtotime($dateB);
 
-	   if($timediff > 86400){
+	   if($timediff > 86400 || $timediff < 1){
 		   echo 'more than 24 hours';
 	   }
 	   else
 	   {
 		   echo 'less than 24 hours';
-	   }
-	   echo PHP_EOL;
+
+
+			$mail = new PHPMailer();
+			$mail->IsSMTP();
+			$mail->Mailer = "smtp";
+			$mail->SMTPDebug  = 1;  
+			$mail->SMTPAuth   = TRUE;
+			$mail->SMTPSecure = "tls";
+			$mail->Port       = 587;
+			$mail->Host       = "smtp.gmail.com";
+			$mail->Username   =" IT490F1virgo@gmail.com";
+			$mail->Password   = "virgo2022";
+			$mail->IsHTML(true);
+			$mail->AddAddress("mp875@njit.edu", "Mit");
+			$mail->SetFrom("IT490F1virgo@gmail.com", "IT490");
+			$mail->AddReplyTo("reply-to-email@domain", "reply-to-name");
+			$mail->AddCC("", "cc-recipient-name");
+			$mail->Subject = "F1 Push Notification";
+			$content = "<b> The $RaceName is starting at $Country at $date and $time</b>";
+			$mail->MsgHTML($content);
+			if(!$mail->Send()) {
+		 	 echo "Error while sending Email.";
+		  	var_dump($mail);
+			} else {
+ 		 	echo "Email sent successfully";
+			}
+
+
+	   		}	
+			   echo PHP_EOL;
 
 
 
