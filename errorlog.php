@@ -1,17 +1,23 @@
 <?php
-// Send error message to the server log if error connecting to the database
-if (!mysqli_connect("localhost","bad_user","bad_password","my_db")) {
-    error_log("Failed to connect to database!", 0);
-}
 
-
+display_errors = on
+ini_set('display_errors', 1);
 ini_set('log_errors', 1);
+ini_set('error_log', dirname(__FILE__) . '~git/IT490F1/IT490F1/errorlog.txt');
+php_value error_log log/errorlog.txt
 
-try{
-	if(true){
-		throw new Exception("Something failed", 900);
-	}
-}
+error_reporting(E_ALL & ~E_WARNING & ~E_CORE_WARNING & ~E_COMPILE_WARNING & ~E_USER_WARNING);
+
+php_flag display_errors on 
+
+
+
+
+?>
+
+
+
+<?php
 
 catch (Exception $e) {
 	$datetime = new DateTime();
