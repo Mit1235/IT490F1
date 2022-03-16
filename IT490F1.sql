@@ -4,7 +4,7 @@ CREATE TABLE `brackets` (
   `player1ID` int NOT NULL,
   `player1Driver` varchar(40),
   `player1PitCrew` varchar(40),
-  `player1Score` int, 
+  `player1Score` int NOT NULL, 
 ) DEFAULT CHARSET=utf8mb4;
 
 
