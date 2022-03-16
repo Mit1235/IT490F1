@@ -18,13 +18,13 @@ function databaseConn(){
 	}
 }
 
-function registerUser($username, $password, $email){
+function registerUser($username, $password, $email, $isNotif){
 	
 	databaseConn();
 	$hashPass = password_hash($password, PASSWORD_BCRYPT);
-	$sql = 'INSERT INTO users (username, password, email) VALUES ( ? , ? , ?)';
+	$sql = 'INSERT INTO users (username, password, email, isNotif) VALUES ( ? , ? , ?, ?)';
 	if ($stmt->prepare($sql)) {
-		$stmt->bind_param('iss', $username, $hashPass, $email);
+		$stmt->bind_param('iss', $username, $hashPass, $email, $isNotif);
 		
 		if($stmt->execute()) {
 			echo "User added successfully.";
@@ -63,12 +63,20 @@ function doLogin($username, $password){
 
 }
 
-function makeBracket($bracketName){
+function emailList(){
+
+	databaseConn();
+	$listArray = mysqli->query("SELECT email FROM users WHERE isNotif = 1");
+	return $listArray;
+	
+}
+
+function makeBracket($bracketName, $player1ID){
 	
 	databaseConn();
-	$sql = 'INSERT INTO brackets (bracketName) VALUES ( ? )';
+	$sql = 'INSERT INTO brackets (bracketName, player1ID, player1Score) VALUES ( ?, ?, 0 )';
 	if ($stmt->prepare($sql)) {
-		$stmt->bind_param('iss', $bracketName);
+		$stmt->bind_param('iss', $bracketName, $player1ID);
 		
 		if($stmt->execute()) {
 			echo "Bracket added successfully.";
@@ -85,8 +93,34 @@ function getBracket($bracketName){
 
 	databaseConn();
 	//code to retrieve all data from a bracket with the requested name
-	return 1;
+	$bracketArray = mysqli->query("SELECT * FROM brackets WHERE bracketName = '$bracketName'");
+	return $bracketArray;
 }
+
+/*function addRace($raceName, $raceLocation, $raceDT){
+
+	databaseConn();
+	$sql = 'INSERT INTO races (raceName, raceLocation, raceDT) VALUES ( ? , ? , ?)';
+	if ($stmt->prepare($sql)) {
+		$stmt->bind_param('iss', $raceName, $raceLocation, $raceDT);
+		
+		if($stmt->execute()) {
+			echo "Race added successfully.";
+			return 1;
+		}
+		else {
+			echo "There was an error adding this race.";
+			return 0;
+		}
+	}
+}
+
+function getRaceDT($raceName){
+
+	databaseConn();
+	//code to retrieve the datetime from a race with the requested name
+	return 1;
+}*/
 
 function requestProcessor($request)
 {
@@ -101,11 +135,17 @@ function requestProcessor($request)
     case "Login":
       return doLogin($request['username'],$request['password']);
     case "Register":
-      return registerUser($request['username'],$request['password'],$request['email']);
+      return registerUser($request['username'], $request['password'], $request['email'], $request['isNotif']);
+    case "EmailList":
+      return emailList();
     case "MakeBracket":
       return makeBracket($request['bracketName']);
     case "GetBracket":
       return getBracket($request['bracketName']);
+    /*case "AddRace":
+      return addRace($request['raceName'], $request['raceLocation'], $request['raceDT']);
+    case "GetRaceTime":
+      return getRaceDT($request['raceName']);*/
     case "validate_session":
       return doValidate($request['sessionId']);
   }
