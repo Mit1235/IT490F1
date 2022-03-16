@@ -1,0 +1,18 @@
+total 64
+4 -rw-rw-r-- 1 parallels parallels   64 Feb 21 11:53 composer.json
+4 -rwxrwxr-x 1 parallels parallels  660 Feb 21 11:53 get_host_info.inc
+0 -rw-rw-r-- 1 parallels parallels    0 Feb 21 11:53 host.ini
+4 -rw-rw-r-- 1 parallels parallels  650 Feb 21 11:53 IT490F1.sql
+4 -rw-rw-r-- 1 parallels parallels   57 Feb 21 11:53 local.ini
+4 -rwxrwxr-x 1 parallels parallels  501 Feb 21 11:53 mongoClient.php
+0 -rw-rw-r-- 1 parallels parallels    0 Feb 23 01:01 outputlog.txt
+4 -rw-rw-r-- 1 parallels parallels  422 Feb 21 11:53 path.inc
+8 -rw-rw-r-- 1 parallels parallels 7805 Feb 22 23:55 rabbitMQLib.inc
+4 drwxrwxr-x 2 parallels parallels 4096 Feb 21 11:53 rpc
+4 -rw-rw-r-- 1 parallels parallels  150 Feb 21 11:53 soccerData.php
+4 -rwxrwxr-x 1 parallels parallels  813 Feb 21 11:53 testphp.php
+4 -rwxrwxr-x 1 parallels parallels  597 Feb 21 11:53 testRabbitMQClient.php
+4 -rw-rw-r-- 1 parallels parallels  189 Feb 23 00:02 testRabbitMQ.ini
+4 -rw-rw-r-- 1 parallels parallels  377 Feb 21 11:53 testRabbitMQServer.conf
+4 -rw-rw-r-- 1 parallels parallels  242 Feb 21 11:53 testRabbitMQServer.monit
+4 -rwxrwxr-x 1 parallels parallels  935 Feb 21 11:53 testRabbitMQServer.php
