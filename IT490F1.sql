@@ -2,9 +2,9 @@ CREATE TABLE `brackets` (
   `bracketID` smallint NOT NULL AUTO_INCREMENT,
   `bracketName` varchar(40) NOT NULL,
   `player1ID` int NOT NULL,
-  `player1Driver` varchar(40) NOT NULL,
-  `player1PitCrew` varchar(40) NOT NULL,
-  `player1Score` int NOT NULL, 
+  `player1Driver` varchar(40),
+  `player1PitCrew` varchar(40),
+  `player1Score` int, 
 ) DEFAULT CHARSET=utf8mb4;
 
 
