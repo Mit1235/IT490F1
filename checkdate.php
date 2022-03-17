@@ -52,7 +52,7 @@ if ($err) {
 
 	$dateA = "$date $time";
 	    echo $dateA;
-	    $dateB =   $DateAndTime;   
+	    $dateB =  $DateAndTime;   
      	    //'2022-06-19 12:12:12';
 		    
 	    
