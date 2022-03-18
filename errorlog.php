@@ -49,8 +49,8 @@ for($i = 0; $i < count($errorArray); $i++){
 
 file_put_contents("/home/parallels/git/IT490F1/IT490F1/errorlog.txt", "");
 
-function createRMQClient($request){
-	$client = new rabbitMQClient('testRabbitMQ.ini', 'testServer');
+function createClient($request){
+	$client = new rabbitClient("/home/parallels/git/IT490F1/IT490F1/testRabbitMQ.ini", 'testServer');
 	if(isset($argv[1])){
 		$msg = $argv[1];
 	}
