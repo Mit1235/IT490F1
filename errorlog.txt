@@ -18,3 +18,72 @@ Stack trace:
 #0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(16): createClient()
 #1 {main}
   thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 48
+[17-Mar-2022 17:15:37 America/New_York] PHP Fatal error:  Uncaught Error: Class 'rabbitClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:48
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(16): createClient()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 48
+[17-Mar-2022 17:34:48 America/New_York] PHP Fatal error:  Uncaught Error: Class 'rabbitMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:53
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(21): createRMQClient()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 53
+[17-Mar-2022 18:25:43 America/New_York] PHP Fatal error:  Uncaught Error: Class 'rabbitMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:53
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(21): createRMQClient()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 53
+[17-Mar-2022 18:31:43 America/New_York] PHP Fatal error:  Uncaught Error: Class 'rabbitMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:53
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(21): createRMQClient()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 53
+[18-Mar-2022 14:13:39 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined function createRMQClient() in /home/parallels/git/IT490F1/IT490F1/errorlog.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 21
+[18-Mar-2022 14:14:57 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined function createRMQClient() in /home/parallels/git/IT490F1/IT490F1/errorlog.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 21
+[18-Mar-2022 14:28:50 America/New_York] PHP Fatal error:  Uncaught Error: Class 'rabbitClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:53
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(21): createClient()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 53
+[18-Mar-2022 14:56:17 America/New_York] PHP Fatal error:  Uncaught Error: Class 'rabbitMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:53
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(21): createRMQClient()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 53
+This is an error message![18-Mar-2022 15:11:34 America/New_York] This is an error message!
+This is an error message![18-Mar-2022 15:36:26 America/New_York] This is an error message!
+This is an error message![18-Mar-2022 16:05:04 America/New_York] This is an error message!
+[18-Mar-2022 16:05:29 America/New_York] PHP Fatal error:  Uncaught Error: Class 'rabbitMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:56
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(24): createRMQClient()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 56
+[18-Mar-2022 17:53:28 America/New_York] PHP Fatal error:  Uncaught Error: Class 'rabbitMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:60
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(28): createRMQClient()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 60
+[18-Mar-2022 17:56:47 America/New_York] PHP Deprecated:  Function AMQPQueue::declare() is deprecated in /home/parallels/git/IT490F1/IT490F1/rabbitMQLib.inc on line 215
+[18-Mar-2022 17:56:47 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined function createClient() in /home/parallels/git/IT490F1/IT490F1/errorlog.php:50
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/dbListener.php(31): require_once()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 50
+This is an error message![18-Mar-2022 18:08:23 America/New_York] PHP Deprecated:  Function AMQPQueue::declare() is deprecated in /home/parallels/git/IT490F1/IT490F1/rabbitMQLib.inc on line 215
+[18-Mar-2022 18:08:23 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined function createClient() in /home/parallels/git/IT490F1/IT490F1/errorlog.php:50
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/dbListener.php(31): require_once()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 50
+[18-Mar-2022 18:13:04 America/New_York] PHP Deprecated:  Function AMQPQueue::declare() is deprecated in /home/parallels/git/IT490F1/IT490F1/rabbitMQLib.inc on line 215
+[18-Mar-2022 18:13:04 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined function createClient() in /home/parallels/git/IT490F1/IT490F1/errorlog.php:50
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/dbListener.php(31): require_once()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 50
