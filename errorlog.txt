@@ -87,3 +87,59 @@ Stack trace:
 #0 /home/parallels/git/IT490F1/IT490F1/dbListener.php(31): require_once()
 #1 {main}
   thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 50
+[18-Mar-2022 19:01:08 America/New_York] PHP Fatal error:  Uncaught Error: Class 'rabbitMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:60
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(28): createRMQClient()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 60
+[18-Mar-2022 19:02:11 America/New_York] PHP Fatal error:  Uncaught Error: Class 'createRMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:60
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(28): createRMQClient()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 60
+[18-Mar-2022 19:24:02 America/New_York] PHP Fatal error:  Uncaught Error: Class 'createRMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:59
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(28): createRMQClient()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 59
+[18-Mar-2022 19:25:29 America/New_York] PHP Fatal error:  Uncaught Error: Class 'rmqClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:56
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(28): newRMQClient()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 56
+This is an error message![18-Mar-2022 19:47:39 America/New_York] PHP Fatal error:  Uncaught Error: Class 'createRMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:56
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(28): createRMQClient()
+#1 /home/parallels/git/IT490F1/IT490F1/dbListener.php(31): require_once('/home/parallels...')
+#2 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 56
+[18-Mar-2022 19:54:34 America/New_York] PHP Fatal error:  Uncaught Error: Class 'createRMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:56
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(28): createRMQClient()
+#1 /home/parallels/git/IT490F1/IT490F1/dbListener.php(27): require_once('/home/parallels...')
+#2 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 56
+[19-Mar-2022 02:16:04 America/New_York] PHP Notice:  Undefined variable: error_message in /home/parallels/git/IT490F1/IT490F1/dbListener.php on line 19
+[19-Mar-2022 02:16:04 America/New_York] 
+[19-Mar-2022 02:16:04 America/New_York] PHP Warning:  require_once(home/parallels/git/IT490F1/IT490F1/errorlog.php): failed to open stream: No such file or directory in /home/parallels/git/IT490F1/IT490F1/dbListener.php on line 27
+[19-Mar-2022 02:16:04 America/New_York] PHP Fatal error:  require_once(): Failed opening required 'home/parallels/git/IT490F1/IT490F1/errorlog.php' (include_path='.:/usr/share/php:/home/dkehoe/git/system_integration') in /home/parallels/git/IT490F1/IT490F1/dbListener.php on line 27
+[19-Mar-2022 02:21:34 America/New_York] PHP Fatal error:  Uncaught Error: Class 'rabbitMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:55
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(27): createClientforRMQ()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 55
+[19-Mar-2022 02:22:43 America/New_York] PHP Fatal error:  Uncaught Error: Class 'rabbitMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:55
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(27): createClientforRMQ()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 55
+[19-Mar-2022 02:26:43 America/New_York] PHP Fatal error:  Uncaught Error: Class 'RabbitMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:55
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(27): createClientforRMQ()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 55
+[19-Mar-2022 02:30:57 America/New_York] PHP Fatal error:  Uncaught Error: Class 'RabbitMQClient' not found in /home/parallels/git/IT490F1/IT490F1/errorlog.php:55
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(27): createClientforRMQ()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 55
