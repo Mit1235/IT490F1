@@ -6,6 +6,11 @@
     require_once('../rabbitmqphp_example/rabbitMQLib.inc');
     require_once('testRabbitMQClient.php');
 
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+   
+
     function gateway(){
         if (!$_SESSION["logged"]){
             header("Location: ../html/index.html");
@@ -19,6 +24,7 @@
         $request['email'] = $email;
         $request['password'] = $password;
         $data = Client($request);
+        
         if($data == 1){
             $_SESSION["username"] = $username;
             $_SESSION["logged"] = true;
