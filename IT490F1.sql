@@ -27,7 +27,7 @@ CREATE TABLE `brackets` (
 CREATE TABLE `users` (
   `userID` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `username` varchar(40) NOT NULL,
-  `hashPass` varchar(40) NOT NULL,
+  `password` varchar(99) NOT NULL,
   `email` varchar (40) NOT NULL,
   `isNotif` tinyint NOT NULL
 );
