@@ -10,12 +10,12 @@ if (isset($argv[1]))
 }
 else
 {
-  $msg = "test message";
+  $msg = "";
 }
 
 $request = array();
 $request['type'] = "history";
-$request['message'] = $msg;
+$request['msg'] = $msg;
 $response = $client->send_request($request);
 //$response = $client->publish($request);
 
