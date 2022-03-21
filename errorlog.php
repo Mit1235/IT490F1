@@ -1,5 +1,12 @@
 <?php
 
+//  Required files
+
+require_once('path.inc');
+require_once('get_host_info.inc');
+require_once('rabbitMQLib.inc');
+
+
 //incldue('dbListener.php');
 //incldue('dbFunctions.php');
 //incldue('index.php');
@@ -10,59 +17,30 @@
 //include('errorlog4.php');
 
 
-error_reporting(E_ALL & ~E_WARNING & ~E_CORE_WARNING & ~E_COMPILE_WARNING & ~E_USER_WARNING);
+error_reporting(E_ALL);
 ini_set('display_errors', 'Off');
 ini_set('log_errors', 'On');
 ini_set('error_log',"/home/parallels/git/IT490F1/IT490F1/errorlog.txt");
 $displayErrors = ini_get('display_errors');
-$errorLogPath = ini_get('error_log',"/home/parallels/git/IT490F1/IT490F1/errorlog.txt");
+$errorLog = ini_get('error_log',"/home/parallels/git/IT490F1/IT490F1/errorlog.txt");
+$errorMessage('This is an error');
 
+//this is what reads the local files
 
 
 $file = file_get_contents("/home/parallels/git/IT490F1/IT490F1/errorlog.txt");
+$fwrite($file, $errorLog, $displayErrors);
 $errorArray = [];
 $request = array();
-$request ['type'] = "parallels";
-$request['error_string'] =$request;
-$returnedValue = createClientRMQ($request);
- 
-// file_put_contents ("/home/parallels/git/IT490F1/IT490F1/errorlog.txt", "");
-//  Required files
+$request ['type'] = "IT490F1";
+$request['error_string'] =$file;
 
-require_once('path.inc');
-require_once('get_host_info.inc');
-require_once('rabbitMQLib.inc');
-
-$file = fopen("/home/parallels/git/IT490F1/IT490F1/errorlog.txt","r");
-$errorArray = [];
-while(! feof($file)){
-	array_push($errorArray, fgets($file));
+function our_errors($errorMessage){
+	$errorLog = fopen("errorlog.txt", "a");
+        fwrite($errorLog, $errorMessage);
+	fclose($errorLog);
 }
+file_put_contents ("/home/parallels/git/IT490F1/IT490F1/errorlog.txt", FILE_APPEND);               
 
-fclose($file);
-$request = array();
-$request['type'] = "dmz";  
-$request['error_string'] = $errorArray;
-
-$fp = fopen("/home/parallels/git/IT490F1/IT490F1/errorlog.txt", "a");
-for($i = 0; $i < count($errorArray); $i++){
-	fwrite($fp, $errorArray[$i]);
-    }
-
-file_put_contents("/home/parallels/git/IT490F1/IT490F1/errorlog.txt", "");
-
-function createClientRMQ($request){
-	$client = new RabbitMQClient("/home/parallels/git/IT490F1/IT490F1/testRabbitMQ.ini", "testServer");
-	if(isset($argv[1])){
-		$msg = $argv[1];
-	}
-	else{
-		$msg = "client";
-            }
-	$response = $client->send_request($request);
-	return $response;
-}
-
-file_put_contents ("/home/parallels/git/IT490F1/IT490F1/errorlog.txt", $returnedValue, FILE_APPEND);
 
 ?>
