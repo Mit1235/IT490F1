@@ -92,11 +92,12 @@ function getID($username, $password) {
 		echo "SQL Connection Successful\n";
 	}
 	$hashPass = password_hash($password, PASSWORD_BCRYPT);
-	$stmt = $conn->prepare("SELECT userID FROM users WHERE username = ? AND password = ?");
-	$stmt->bind_param("ss", $username, $hashPass);
-	$stmt->execute();
-	$stmt->bind_result($userID);
+	$result = $conn->query("SELECT userID FROM users WHERE username = '$username'");
+	$userID = $result->fetch_all();
+	mysqli_free_result($result);
+	print_r($userID);
 	return $userID;
+	$conn->close();
 	
 }
 
