@@ -5,6 +5,14 @@ require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/SMTP.php';
 
+
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'Off');
+ini_set('log_errors', 'On');
+ini_set('error_log',"errorlog.txt");
+
+
 $obj =  new DateTime();
 $DateAndTime = $obj->format("d-m-Y h:i:sp");
 //echo $DateAndTime;

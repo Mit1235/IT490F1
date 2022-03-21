@@ -155,3 +155,11 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/mit490/git/IT490F1/errorlog.php on line 26
+[21-Mar-2022 00:57:37 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined function url_setopt_array() in /home/mit490/git/IT490F1/demolive.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/mit490/git/IT490F1/demolive.php on line 11
+[21-Mar-2022 00:57:47 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined function url_setopt_array() in /home/mit490/git/IT490F1/demolive.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/mit490/git/IT490F1/demolive.php on line 11

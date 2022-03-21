@@ -8,8 +8,6 @@
     require_once('testRabbitMQ.ini');
 
 
-$username = $_POST['username'];
-$password = $_POST['password'];
 
 $request = array();
 $request['type'] = 'Login';
