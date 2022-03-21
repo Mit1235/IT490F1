@@ -143,3 +143,15 @@ Stack trace:
 #0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(27): createClientforRMQ()
 #1 {main}
   thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 55
+[20-Mar-2022 23:55:21 America/New_York] PHP Warning:  ini_get() expects exactly 1 parameter, 2 given in /home/mit490/git/IT490F1/errorlog.php on line 25
+[20-Mar-2022 23:55:21 America/New_York] PHP Notice:  Undefined variable: errorMessage in /home/mit490/git/IT490F1/errorlog.php on line 26
+[20-Mar-2022 23:55:21 America/New_York] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/mit490/git/IT490F1/errorlog.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/mit490/git/IT490F1/errorlog.php on line 26
+[20-Mar-2022 23:55:56 America/New_York] PHP Warning:  ini_get() expects exactly 1 parameter, 2 given in /home/mit490/git/IT490F1/errorlog.php on line 25
+[20-Mar-2022 23:55:56 America/New_York] PHP Notice:  Undefined variable: errorMessage in /home/mit490/git/IT490F1/errorlog.php on line 26
+[20-Mar-2022 23:55:56 America/New_York] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/mit490/git/IT490F1/errorlog.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/mit490/git/IT490F1/errorlog.php on line 26
