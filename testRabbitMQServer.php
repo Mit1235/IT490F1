@@ -83,16 +83,16 @@ function doLogin($username, $password){
 	while($stmt->fetch()) {
 		if(password_verify($password, $hashPass)){
 			echo "Login Successful.";
-			return true;
+			return 1;
 		}
 		else{
 			//log failed logins possibly
 			echo "Username or Password incorrect.";
-			return false;
+			return 0;
 		}
 	}
 	$stmt->close();
-	return false;
+	return 0;
 	$conn->close();
 
 }
@@ -226,9 +226,9 @@ function addPlayer($bracketName, $userID){
 		}
 		else {
 			echo "Error: " . $sql . "<br>" . $conn->error;
-			return false;
+			return 0;
 		}
-		return true;
+		return 1;
 	}
 	elseif (is_null($player3ID[0])) {
 		$sql = "UPDATE brackets SET player3ID = $userID WHERE bracketName = '$bracketName'";
@@ -238,7 +238,7 @@ function addPlayer($bracketName, $userID){
 		else {
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
-		return true;
+		return 1;
 	}
 	elseif (is_null($player4ID[0])) {
 		$sql = "UPDATE brackets SET player4ID = $userID WHERE bracketName = '$bracketName'";
@@ -247,13 +247,13 @@ function addPlayer($bracketName, $userID){
 		}
 		else {
 			echo "Error: " . $sql . "<br>" . $conn->error;
-			return false;
+			return 0;
 		}
-		return true;
+		return 1;
 	}
 	else {
 		echo "Error: Max players reached";
-		return false;
+		return 0;
 	}
 	$conn->close();
 	
@@ -328,9 +328,9 @@ function addCrew($bracketName, $playerID, $driver1, $driver2, $pitCrew) {
 	}
 	else {
 		echo "Error: Player not in bracket";
-		return false;
+		return 0;
 	}
-	return true;
+	return 1;
 	$conn->close();
 }
 
@@ -403,9 +403,9 @@ function updateScore($bracketName, $playerID, $score){
 	}
 	else {
 		echo "Error: Player not in bracket";
-		return false;
+		return 0;
 	}
-	return true;
+	return 1;
 	$conn->close();
 }
 
