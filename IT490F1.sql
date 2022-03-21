@@ -32,6 +32,12 @@ CREATE TABLE `users` (
   `isNotif` tinyint NOT NULL
 );
 
+CREATE TABLE `comments` (
+  `commentID` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `username` varchar(40) NOT NULL,
+  `commentText` varchar(999) NOT NULL
+);
+
 
 /*ALTER TABLE `brackets`
   ADD PRIMARY KEY (`bracketID`);
