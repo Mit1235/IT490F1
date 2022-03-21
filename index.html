@@ -12,12 +12,13 @@
 <section class="signup-form">
 	<h2>Sign Up!</h2>
 	<form action="includes/signup.inc.php" method="post">
-		<input type="text" name="firstname" placeholder="Please enter your Firstname">
-		<input type="text" name="lastname" placeholder="Please enter your Lastname">
 		<input type="text" name="username" placeholder="Please enter your Username">
 		<input type="email" name="email" placeholder="Please enter your Email">
 		<input type="password" name="password" placeholder="Please enter your Password">
-		<button type="submit" name="submit">Sign Up!</button>
+		<button type="submit" name="submit"><a href="Create.html">Sign Up!</a></button>
+		<input type="checkbox" id="isNotif" name="isNotif" value="isNotif">
+		<label for="isNotif"> Push Notifications?</label><br>
+
 	</form>
 </section>
 
