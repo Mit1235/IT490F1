@@ -32,8 +32,43 @@ if ($err) {
     echo "cURL Error #:" . $err;
 } else {
 
-    $array = json_decode( $response,true);
+require_once('path.inc');
+require_once('get_host_info.inc');
+require_once('rabbitMQLib.inc');
 
+$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+if (isset($argv[1]))
+{
+  $msg = $argv[1];
+}
+else
+{
+  $msg = "";
+}
+
+$request = array();
+$request['type'] = "EmailList";
+$email = $client->send_request($request);
+//$response = $client->publish($request);
+
+echo "client received response: ".PHP_EOL;
+//print_r($email);
+echo "\n\n";
+
+echo $argv[0]." END".PHP_EOL;
+
+
+$array = json_decode( $response,true);
+
+
+foreach($email as $innerArray){ 
+foreach($innerArray as &$value1){
+
+	//$emailname = $value1['EmailList'];
+	//echo $emailname;
+	echo $value1;
+	
+	
     foreach($array['MRData']['RaceTable']['Races'] as &$value) {
         //echo "<br>";
         $RaceName = $value['raceName'];
@@ -77,7 +112,7 @@ if ($err) {
 			$mail->Username   =" IT490F1virgo@gmail.com";
 			$mail->Password   = "virgo2022";
 			$mail->IsHTML(true);
-			$mail->AddAddress("mp875@njit.edu", "Mit");
+			$mail->AddAddress($value1, "Mit");
 			$mail->SetFrom("IT490F1virgo@gmail.com", "IT490");
 			$mail->AddReplyTo("reply-to-email@domain", "reply-to-name");
 			$mail->AddCC("", "cc-recipient-name");
@@ -89,19 +124,20 @@ if ($err) {
 		  	var_dump($mail);
 			} else {
  		 	echo "Email sent successfully";
-			}
-
+	 		}
+	 
 
 	   		}	
 			   echo PHP_EOL;
-
+	 
 
 
    //     echo "Time: ".$time;
  //       echo "<br>";
     }
+}
 
-
+}
 }
 
 
