@@ -179,10 +179,16 @@ function addPlayer($bracketName, $playerID){
 	} else {
 		echo "SQL Connection Successful\n";
 	}
-	$player2ID = $conn->query("SELECT player2ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player3ID = $conn->query("SELECT player3ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player4ID = $conn->query("SELECT player4ID FROM brackets WHERE bracketName = '$bracketName'");
-	if (is_null($player2ID)) {
+	$result1 = $conn->query("SELECT player2ID FROM brackets WHERE bracketName = '$bracketName'");
+	$player2ID = $result1->fetch_all();
+	mysqli_free_result($result1);
+	$result2 = $conn->query("SELECT player3ID FROM brackets WHERE bracketName = '$bracketName'");
+	$player3ID = $result2->fetch_all();
+	mysqli_free_result($result2);
+	$result3 = $conn->query("SELECT player4ID FROM brackets WHERE bracketName = '$bracketName'");
+	$player4ID = $result3->fetch_all();
+	mysqli_free_result($result3);
+	if (is_null($player2ID[0])) {
 		$sql = "UPDATE brackets SET player2ID = $playerID WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Player added successfully";
@@ -193,7 +199,7 @@ function addPlayer($bracketName, $playerID){
 		}
 		return true;
 	}
-	elseif (is_null($player3ID)) {
+	elseif (is_null($player3ID[0])) {
 		$sql = "UPDATE brackets SET player3ID = $playerID WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Player added successfully";
@@ -203,7 +209,7 @@ function addPlayer($bracketName, $playerID){
 		}
 		return true;
 	}
-	elseif (is_null($player4ID)) {
+	elseif (is_null($player4ID[0])) {
 		$sql = "UPDATE brackets SET player4ID = $playerID WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Player added successfully";
@@ -236,11 +242,19 @@ function addCrew($bracketName, $playerID, $driver1, $driver2, $pitCrew) {
 	} else {
 		echo "SQL Connection Successful\n";
 	}
-	$player1ID = $conn->query("SELECT player1ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player2ID = $conn->query("SELECT player2ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player3ID = $conn->query("SELECT player3ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player4ID = $conn->query("SELECT player4ID FROM brackets WHERE bracketName = '$bracketName'");
-	if ($playerID == $player1ID){
+	$result1 = $conn->query("SELECT player1ID FROM brackets WHERE bracketName = '$bracketName'");
+	$player1ID = $result1->fetch_all();
+	mysqli_free_result($result1);
+	$result2 = $conn->query("SELECT player2ID FROM brackets WHERE bracketName = '$bracketName'");
+	$player2ID = $result2->fetch_all();
+	mysqli_free_result($result2);
+	$result3 = $conn->query("SELECT player3ID FROM brackets WHERE bracketName = '$bracketName'");
+	$player3ID = $result3->fetch_all();
+	mysqli_free_result($result3);
+	$result4 = $conn->query("SELECT player4ID FROM brackets WHERE bracketName = '$bracketName'");
+	$player4ID = $result4->fetch_all();
+	mysqli_free_result($result4);
+	if ($playerID == $player1ID[0]){
 		$sql = "UPDATE brackets SET player1Driver1 = '$driver1', player1Driver2 = '$driver2', player1PitCrew = '$pitCrew' WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Crew added successfully";
@@ -249,7 +263,7 @@ function addCrew($bracketName, $playerID, $driver1, $driver2, $pitCrew) {
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 	}
-	elseif ($playerID == $player2ID) {
+	elseif ($playerID == $player2ID[0]) {
 		$sql = $sql = "UPDATE brackets SET player2Driver1 = '$driver1', player2Driver2 = '$driver2', player2PitCrew = '$pitCrew' WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Crew added successfully";
@@ -258,7 +272,7 @@ function addCrew($bracketName, $playerID, $driver1, $driver2, $pitCrew) {
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 	}
-	elseif ($playerID == $player3ID){
+	elseif ($playerID == $player3ID[0]){
 		$sql = $sql = "UPDATE brackets SET player2Driver1 = '$driver1', player2Driver2 = '$driver2', player2PitCrew = '$pitCrew' WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Crew added successfully";
@@ -267,7 +281,7 @@ function addCrew($bracketName, $playerID, $driver1, $driver2, $pitCrew) {
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 	}
-	elseif ($playerID == $player4ID){
+	elseif ($playerID == $player4ID[0]){
 		$sql = $sql = "UPDATE brackets SET player2Driver1 = '$driver1', player2Driver2 = '$driver2', player2PitCrew = '$pitCrew' WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Crew added successfully";
@@ -298,11 +312,19 @@ function updateScore($bracketName, $playerID, $score){
 	} else {
 		echo "SQL Connection Successful\n";
 	}
-	$player1ID = $conn->query("SELECT player1ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player2ID = $conn->query("SELECT player2ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player3ID = $conn->query("SELECT player3ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player4ID = $conn->query("SELECT player4ID FROM brackets WHERE bracketName = '$bracketName'");
-	if ($playerID == $player1ID){
+	$result1 = $conn->query("SELECT player1ID FROM brackets WHERE bracketName = '$bracketName'");
+	$player1ID = $result1->fetch_all();
+	mysqli_free_result($result1);
+	$result2 = $conn->query("SELECT player2ID FROM brackets WHERE bracketName = '$bracketName'");
+	$player2ID = $result2->fetch_all();
+	mysqli_free_result($result2);
+	$result3 = $conn->query("SELECT player3ID FROM brackets WHERE bracketName = '$bracketName'");
+	$player3ID = $result3->fetch_all();
+	mysqli_free_result($result3);
+	$result4 = $conn->query("SELECT player4ID FROM brackets WHERE bracketName = '$bracketName'");
+	$player4ID = $result4->fetch_all();
+	mysqli_free_result($result4);
+	if ($playerID == $player1ID[0]){
 		$sql = "UPDATE brackets SET player1Score = $score WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Score updated successfully";
@@ -311,7 +333,7 @@ function updateScore($bracketName, $playerID, $score){
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 	}
-	elseif ($playerID == $player2ID){
+	elseif ($playerID == $player2ID[0]){
 		$sql = "UPDATE brackets SET player2Score = $score WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Score updated successfully";
@@ -320,7 +342,7 @@ function updateScore($bracketName, $playerID, $score){
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 	}
-	elseif ($playerID == $player3ID){
+	elseif ($playerID == $player3ID[0]){
 		$sql = "UPDATE brackets SET player3Score = $score WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Score updated successfully";
@@ -329,7 +351,7 @@ function updateScore($bracketName, $playerID, $score){
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 	}
-	elseif ($playerID == $player4ID){
+	elseif ($playerID == $player4ID[0]){
 		$sql = "UPDATE brackets SET player4Score = $score WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Score updated successfully";
@@ -416,4 +438,3 @@ $server->process_requests('requestProcessor');
 echo "testRabbitMQServer END".PHP_EOL;
 exit();
 ?>
-
