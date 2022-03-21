@@ -91,8 +91,11 @@ function emailList(){
 	} else {
 		echo "SQL Connection Successful\n";
 	}
-	$listArray = $conn->query("SELECT email FROM users WHERE isNotif = 1");
-	return $listArray;
+	$result = $conn->query("SELECT email FROM users WHERE isNotif = 1");
+	$emailArray = $result->fetch_all();
+	mysqli_free_result($result);
+	print_r($emailArray);
+	return $emailArray;
 	$conn->close();
 	
 }
@@ -131,8 +134,9 @@ function getBracket($bracketName){
 	} else {
 		echo "SQL Connection Successful\n";
 	}
-	//code to retrieve all data from a bracket with the requested name
-	$bracketArray = $conn->query("SELECT * FROM brackets WHERE bracketName = '$bracketName'");
+	$result = $conn->query("SELECT * FROM brackets WHERE bracketName = '$bracketName'");
+	$bracketArray = $result->fetch_all();
+	mysqli_free_result($result);
 	return $bracketArray;
 	$conn->close();
 }
