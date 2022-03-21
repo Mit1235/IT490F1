@@ -77,6 +77,29 @@ function doLogin($username, $password){
 
 }
 
+function getID($username, $password) {
+
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}
+	$hashPass = password_hash($password, PASSWORD_BCRYPT);
+	$stmt = $conn->prepare("SELECT userID FROM users WHERE username = ? AND password = ?");
+	$stmt->bind_param("ss", $username, $hashPass);
+	$stmt->execute();
+	$stmt->bind_result($userID);
+	return $userID;
+	
+}
+
 function emailList(){
 
 	//databaseConn();
@@ -361,6 +384,8 @@ function requestProcessor($request)
       return doLogin($request['username'],$request['password']);
     case "Register":
       return registerUser($request['username'], $request['password'], $request['email'], $request['isNotif']);
+    case "GetID":
+      return getID($request['username'], $request['password']);
     case "EmailList":
       return emailList();
     case "MakeBracket":
