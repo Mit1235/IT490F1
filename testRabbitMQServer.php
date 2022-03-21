@@ -82,7 +82,7 @@ function doLogin($username, $password){
 
 }
 
-function getID($username, $password) {
+function getID($username) {
 
 	//databaseConn();
 	$servername = "localhost";
@@ -129,7 +129,7 @@ function emailList(){
 	
 }
 
-function makeBracket($bracketName, $playerID){
+function makeBracket($bracketName, $userID){
 	
 	//databaseConn();
 	$servername = "localhost";
@@ -144,7 +144,7 @@ function makeBracket($bracketName, $playerID){
 		echo "SQL Connection Successful\n";
 	}
 	$stmt = $conn->prepare("INSERT INTO brackets (bracketName, player1ID, player1Score) VALUES ( ?, ?, 0 )");
-	$stmt->bind_param('si', $bracketName, $playerID);
+	$stmt->bind_param('si', $bracketName, $userID);
 	$stmt->execute();
 	$conn->close();
 }
@@ -170,7 +170,7 @@ function getBracket($bracketName){
 	$conn->close();
 }
 
-function addPlayer($bracketName, $playerID){
+function addPlayer($bracketName, $userID){
 	
 	//databaseConn();
 	$servername = "localhost";
@@ -194,7 +194,7 @@ function addPlayer($bracketName, $playerID){
 	$player4ID = $result3->fetch_all();
 	mysqli_free_result($result3);
 	if (is_null($player2ID[0])) {
-		$sql = "UPDATE brackets SET player2ID = $playerID WHERE bracketName = '$bracketName'";
+		$sql = "UPDATE brackets SET player2ID = $userID WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Player added successfully";
 		}
@@ -205,7 +205,7 @@ function addPlayer($bracketName, $playerID){
 		return true;
 	}
 	elseif (is_null($player3ID[0])) {
-		$sql = "UPDATE brackets SET player3ID = $playerID WHERE bracketName = '$bracketName'";
+		$sql = "UPDATE brackets SET player3ID = $userID WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Player added successfully";
 		}
@@ -215,7 +215,7 @@ function addPlayer($bracketName, $playerID){
 		return true;
 	}
 	elseif (is_null($player4ID[0])) {
-		$sql = "UPDATE brackets SET player4ID = $playerID WHERE bracketName = '$bracketName'";
+		$sql = "UPDATE brackets SET player4ID = $userID WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Player added successfully";
 		}
@@ -373,6 +373,50 @@ function updateScore($bracketName, $playerID, $score){
 	$conn->close();
 }
 
+function addComment($username, $commentText) {
+
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}
+	$stmt = $conn->prepare("INSERT INTO comments (username, statusText, subjectText) VALUES ( ? , ? , ?)");
+	$stmt->bind_param('ss', $username, $commentText);
+	$stmt->execute();
+	$conn->close();
+
+}
+
+
+function getComments() {
+
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}
+	$result = $conn->query("SELECT * FROM comments");
+	$commentArray = $result->fetch_all();
+	mysqli_free_result($result);
+	//print_r($commentArray);
+	return $commentArray;
+	$conn->close();
+}
+
 /*function addRace($raceName, $raceLocation, $raceDT){
 
 	databaseConn();
@@ -413,7 +457,7 @@ function requestProcessor($request)
     case "Register":
       return registerUser($request['username'], $request['password'], $request['email'], $request['isNotif']);
     case "GetID":
-      return getID($request['username'], $request['password']);
+      return getID($request['username']);
     case "EmailList":
       return emailList();
     case "MakeBracket":
@@ -425,7 +469,11 @@ function requestProcessor($request)
     case "AddCrew":
       return addCrew($request['bracketName'], $request['playerID'], $request['driver1'], $request['driver2'], $request['pitCrew']);
     case "UpdateScore":
-      return updateScore($request['bracketName'],$request['playerID'],$request['score']);
+      return updateScore($request['bracketName'], $request['playerID'], $request['score']);
+    case "AddComment":
+      return addComment($request['username'], $request['commentText']);
+    case "GetComments":
+      return getComments();
     /*case "AddRace":
       return addRace($request['raceName'], $request['raceLocation'], $request['raceDT']);
     case "GetRaceTime":
