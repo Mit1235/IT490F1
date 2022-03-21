@@ -424,9 +424,10 @@ function addComment($username, $commentText) {
 	} else {
 		echo "SQL Connection Successful\n";
 	}
-	$stmt = $conn->prepare("INSERT INTO comments (username, statusText, subjectText) VALUES ( ? , ? , ?)");
+	$stmt = $conn->prepare("INSERT INTO comments (username, commentText) VALUES ( ? , ?)");
 	$stmt->bind_param('ss', $username, $commentText);
 	$stmt->execute();
+	return 1;
 	$conn->close();
 
 }
@@ -447,7 +448,7 @@ function getComments() {
 	} else {
 		echo "SQL Connection Successful\n";
 	}
-	$result = $conn->query("SELECT * FROM comments");
+	$result = $conn->query("SELECT username, commentText FROM comments");
 	$commentArray = $result->fetch_all();
 	mysqli_free_result($result);
 	//print_r($commentArray);
