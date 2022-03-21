@@ -7,7 +7,8 @@
     require 'index.php';
     require_once('testRabbitMQ.ini');
 
-
+    $username = "Mit";
+    $password = "it490";
 
 $request = array();
 $request['type'] = 'Login';
@@ -16,4 +17,16 @@ $request['password'] = $password;
 
 $client = new rabbitMQCLient("testRabbitMQ.ini", "testServer");
 $response = $client->send_request($request);
+echo $response;
+
+if($response == 1)
+{
+	echo "logi worked theja add code to go to homepage here";
+}
+else
+{
+	echo "login failed";
+}
+
+
     ?>

@@ -7,19 +7,21 @@ require_once('rabbitMQLib.inc');
 require_once('index.php');
 require_once('testRabbitMQ.ini');
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];  
-    $username = $_POST['username'];
-    $hash = password_hash($password, password_default, $options);
-    $isNotif = $_POST[''];
+    $email = 'test@test.com'; //$_POST['email'];
+    $password = 'password'; //$_POST['password'];  
+    $username = 'tester';  // $_POST['username'];
+//    $hash = password_hash($password, password_default, $options);
+    $isNotif = 0; //$_POST[''];
     
+
+   $client = new rabbitMQClient('testRabbitMQ.ini','testServer');
 
         $request = array();
         $request['type'] = "Register";
         $request['email'] = $email;
         $request['username'] = $username;
         $request['password'] = $password;
-        $request['type'] = $isNotif
+        $request['isNotif'] = $isNotif;
 
         $response = $client->send_request($request);
 

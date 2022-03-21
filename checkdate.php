@@ -95,8 +95,8 @@ foreach($innerArray as &$value1){
 
 	$dateA = "$date $time";
 	    echo $dateA;
-	    $dateB =  $DateAndTime;   
-     	    //'2022-06-19 12:12:12';
+	    $dateB = '2022-06-19 12:12:12'; // $DateAndTime;   
+	    //'2022-06-19 12:12:12';
 		    
 	    
 	   $timediff = strtotime($dateA) - strtotime($dateB);
