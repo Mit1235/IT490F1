@@ -1,14 +1,21 @@
 #!/usr/bin/php
 <?php
+
+//requirements
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
+
+//error logging lines
 error_reporting(E_ALL);
 ini_set('display_errors', 'Off');
 ini_set('log_errors', 'On');
 ini_set('error_log',"errorlog.txt");
 
+
+//defunct database connection function 
+//todo: make an easier way to connect to DB instead of function copy/paste
 function databaseConn(){
 	$servername = "localhost";
 	$dbusername = "it490";
@@ -23,6 +30,8 @@ function databaseConn(){
 	}
 }
 
+
+//function for registering a user to the DB
 function registerUser($username, $password, $email, $isNotif){
 
 	//databaseConn();
@@ -37,6 +46,8 @@ function registerUser($username, $password, $email, $isNotif){
 	} else {
 		echo "SQL Connection Successful\n";
 	}
+	
+	//section to hash a password
 	$hashPass = password_hash($password, PASSWORD_BCRYPT);
 	$stmt = $conn->prepare("INSERT INTO users (username, password, email, isNotif) VALUES ( ? , ? , ?, ?)");
 	$stmt->bind_param('sssi', $username, $hashPass, $email, $isNotif);
@@ -45,6 +56,8 @@ function registerUser($username, $password, $email, $isNotif){
 	
 }
 
+
+//function to log in a user
 function doLogin($username, $password){
 
 	//databaseConn();
@@ -65,6 +78,8 @@ function doLogin($username, $password){
 	$stmt->execute();
 	$stmt->bind_result($hashPass);
 	
+	
+	//verify password and return true or false
 	while($stmt->fetch()) {
 		if(password_verify($password, $hashPass)){
 			echo "Login Successful.";
@@ -82,6 +97,9 @@ function doLogin($username, $password){
 
 }
 
+
+//get a user ID from a username
+//todo: get ID from username AND email
 function getID($username) {
 
 	//databaseConn();
@@ -129,6 +147,8 @@ function emailList(){
 	
 }
 
+
+//function to make a new bracker with the first user 
 function makeBracket($bracketName, $userID){
 	
 	//databaseConn();
@@ -149,6 +169,8 @@ function makeBracket($bracketName, $userID){
 	$conn->close();
 }
 
+
+//get ALL data from a bracket based on name
 function getBracket($bracketName){
 
 	//databaseConn();
@@ -170,6 +192,8 @@ function getBracket($bracketName){
 	$conn->close();
 }
 
+
+//add a player to a specific bracket off of their userID
 function addPlayer($bracketName, $userID){
 	
 	//databaseConn();
@@ -184,6 +208,8 @@ function addPlayer($bracketName, $userID){
 	} else {
 		echo "SQL Connection Successful\n";
 	}
+	
+	//iterate through player slots until an empty one is found
 	$result1 = $conn->query("SELECT player2ID FROM brackets WHERE bracketName = '$bracketName'");
 	$player2ID = $result1->fetch_all();
 	mysqli_free_result($result1);
@@ -233,6 +259,8 @@ function addPlayer($bracketName, $userID){
 	
 }
 
+
+//add drivers and pit crew to a certain player in a specific bracket
 function addCrew($bracketName, $playerID, $driver1, $driver2, $pitCrew) {
 
 	//databaseConn();
@@ -247,6 +275,9 @@ function addCrew($bracketName, $playerID, $driver1, $driver2, $pitCrew) {
 	} else {
 		echo "SQL Connection Successful\n";
 	}
+	
+	//iterate through player slots until an empty one is found
+	//todo: improve this
 	$result1 = $conn->query("SELECT player1ID FROM brackets WHERE bracketName = '$bracketName'");
 	$player1ID = $result1->fetch_all();
 	mysqli_free_result($result1);
@@ -303,6 +334,8 @@ function addCrew($bracketName, $playerID, $driver1, $driver2, $pitCrew) {
 	$conn->close();
 }
 
+
+//update the score for a specific player in a specific bracket
 function updateScore($bracketName, $playerID, $score){
 	
 	//databaseConn();
@@ -317,6 +350,9 @@ function updateScore($bracketName, $playerID, $score){
 	} else {
 		echo "SQL Connection Successful\n";
 	}
+	
+	//iterate through player slots until the correct one is found
+	//todo: improve this
 	$result1 = $conn->query("SELECT player1ID FROM brackets WHERE bracketName = '$bracketName'");
 	$player1ID = $result1->fetch_all();
 	mysqli_free_result($result1);
@@ -373,6 +409,7 @@ function updateScore($bracketName, $playerID, $score){
 	$conn->close();
 }
 
+//add a comment and a username to the database
 function addComment($username, $commentText) {
 
 	//databaseConn();
@@ -394,7 +431,8 @@ function addComment($username, $commentText) {
 
 }
 
-
+//get all the comments from the database
+//todo: add more specific functions for getting comments if needed
 function getComments() {
 
 	//databaseConn();
@@ -450,6 +488,7 @@ function requestProcessor($request)
   {
     return "ERROR: unsupported message type";
   }
+  //switch case for all the request types
   switch ($request['type'])
   {
     case "Login":
