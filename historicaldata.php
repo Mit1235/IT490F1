@@ -48,11 +48,11 @@ function requestProcessor($request)
     case "history":
       return history($request['msg']);
   }
-  return array("returnCode" => '0', 'message'=>"Server received request and processed");
+  return array("worked");
 }
 
 
-$server = new rabbitMQServer("testRabbitMQ.ini","testServer");
+$server = new rabbitMQServer("history.ini","testServer");
 
 echo "testRabbitMQServer BEGIN".PHP_EOL;
 $server->process_requests('requestProcessor');

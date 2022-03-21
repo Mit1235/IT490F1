@@ -3,7 +3,7 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
-$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+$client = new rabbitMQClient("history.ini","testServer");
 if (isset($argv[1]))
 {
   $msg = $argv[1];
