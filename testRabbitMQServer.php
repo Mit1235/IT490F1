@@ -91,8 +91,11 @@ function emailList(){
 	} else {
 		echo "SQL Connection Successful\n";
 	}
-	$listArray = $conn->query("SELECT email FROM users WHERE isNotif = 1");
-	return $listArray;
+	$result = $conn->query("SELECT email FROM users WHERE isNotif = 1");
+	$emailArray = $result->fetch_all();
+	mysqli_free_result($result);
+	print_r($emailArray);
+	return $emailArray;
 	$conn->close();
 	
 }
@@ -131,15 +134,27 @@ function getBracket($bracketName){
 	} else {
 		echo "SQL Connection Successful\n";
 	}
-	//code to retrieve all data from a bracket with the requested name
-	$bracketArray = $conn->query("SELECT * FROM brackets WHERE bracketName = '$bracketName'");
+	$result = $conn->query("SELECT * FROM brackets WHERE bracketName = '$bracketName'");
+	$bracketArray = $result->fetch_all();
+	mysqli_free_result($result);
 	return $bracketArray;
 	$conn->close();
 }
 
 function addPlayer($bracketName, $playerID){
 	
-	databaseConn();
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}
 	$player2ID = $conn->query("SELECT player2ID FROM brackets WHERE bracketName = '$bracketName'");
 	$player3ID = $conn->query("SELECT player3ID FROM brackets WHERE bracketName = '$bracketName'");
 	$player4ID = $conn->query("SELECT player4ID FROM brackets WHERE bracketName = '$bracketName'");
@@ -185,7 +200,18 @@ function addPlayer($bracketName, $playerID){
 
 function addCrew($bracketName, $playerID, $driver1, $driver2, $pitCrew) {
 
-	databaseConn();
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}
 	$player1ID = $conn->query("SELECT player1ID FROM brackets WHERE bracketName = '$bracketName'");
 	$player2ID = $conn->query("SELECT player2ID FROM brackets WHERE bracketName = '$bracketName'");
 	$player3ID = $conn->query("SELECT player3ID FROM brackets WHERE bracketName = '$bracketName'");
@@ -236,7 +262,18 @@ function addCrew($bracketName, $playerID, $driver1, $driver2, $pitCrew) {
 
 function updateScore($bracketName, $playerID, $score){
 	
-	databaseConn();
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}
 	$player1ID = $conn->query("SELECT player1ID FROM brackets WHERE bracketName = '$bracketName'");
 	$player2ID = $conn->query("SELECT player2ID FROM brackets WHERE bracketName = '$bracketName'");
 	$player3ID = $conn->query("SELECT player3ID FROM brackets WHERE bracketName = '$bracketName'");
