@@ -95,7 +95,7 @@ foreach($innerArray as &$value1){
 
 	$dateA = "$date $time";
 	    echo $dateA;
-	    $dateB = '2022-06-19 12:12:12'; // $DateAndTime;   
+	    $dateB =  $DateAndTime;   
 	    //'2022-06-19 12:12:12';
 		    
 	    
