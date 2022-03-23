@@ -7,15 +7,11 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
 
-//incldue('dbListener.php');
-//incldue('dbFunctions.php');
-//incldue('index.php');
-//incldue('includes.php');
+//include('dbListener.php');
+//include('dbFunctions.php');
+//include('index.php');
+//include('includes.php');
 //include('errorlog.php');
-//include('errorlog2.php');
-//include('errorlog3.php');
-//include('errorlog4.php');
-
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'Off');
