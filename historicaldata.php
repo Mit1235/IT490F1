@@ -16,7 +16,7 @@ function history($msg)
 	$curl = curl_init();
 $test = "last";
 curl_setopt_array($curl, array(
-	CURLOPT_URL => "http://ergast.com/api/f1/current/{$test}/results",
+	CURLOPT_URL => "http://ergast.com/api/f1/current/last/results.json",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_ENCODING => "",
@@ -34,8 +34,7 @@ curl_close($curl);
 if ($err) {
     echo "cURL Error #:" . $err;
 } else {
-	//	echo $response;
-	
+	//	echo $response;	
 	return $response;
 	}	
 	
