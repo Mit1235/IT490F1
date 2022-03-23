@@ -4,24 +4,26 @@
     require_once('path.inc');
     require_once('get_host_info.inc');
     require_once('rabbitMQLib.inc');
-    require 'index.php';
     require_once('testRabbitMQ.ini');
 
-    $username = "Mit";
-    $password = "it490";
+session_start();   
 
-$request = array();
-$request['type'] = 'Login';
-$request['username'] = $username;
-$request['password'] = $password;
+
 
 $client = new rabbitMQCLient("testRabbitMQ.ini", "testServer");
 $response = $client->send_request($request);
 echo $response;
 
+
+$request = array();
+$request['type'] = 'Login';
+$request['username'] = $_GET['username'];
+$request['password'] = $_GET['password'];
+
+
 if($response == 1)
 {
-	echo "logi worked theja add code to go to homepage here";
+  header("Location: Create.php");
 }
 else
 {

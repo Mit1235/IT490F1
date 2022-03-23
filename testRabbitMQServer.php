@@ -261,7 +261,7 @@ function addPlayer($bracketName, $userID){
 
 
 //add drivers and pit crew to a certain player in a specific bracket
-function addCrew($bracketName, $playerID, $driver1, $driver2, $pitCrew) {
+function addCrew($driver1, $driver2, $pitCrew) {
 
 	//databaseConn();
 	$servername = "localhost";

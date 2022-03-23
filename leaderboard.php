@@ -15,7 +15,45 @@
 <button id="btn">Create a League<button>
 <script src="index.js"></script>
 
+    <h2>Leaderboard</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Driver 1</th>
+                <th>Driver 2</th>
+                <th>Pit Crew</th>
+                <th>Score</th>
+            </tr>
+</table>
+<table>
+        <h2>Comments</h2>
+            <tr>
+                <th>Name</th>
+                <th>Comment</th>
+            </tr>
 
+
+
+<?php
+
+
+
+$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+        $request = array();
+        $request['type'] = "";
+    $response = $client->send_request($request);
+
+
+    foreach($response as &$innerArray){
+        echo "<tr>";
+        foreach($innerArray as &$value){
+        echo "<td>{$value}<td>";
+    }
+    echo "</tr>";
+}
+?>
+
+</table>
 
 
 </body>

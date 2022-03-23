@@ -19,10 +19,9 @@ else
 }
         $request = array();
         $request['type'] = "Register";
-        $request['email'] = 'johndoe@gmail.com';
-        $request['username'] ="johndoe";
-	$request['password'] ="johndoe";
-	$request['isNotif'] = '1';
+        $request['username'] =$_GET['$username'];
+	      $request['password'] =$_GET['$password'];
+	      $request['isNotif'] = '1';
        
 
 
