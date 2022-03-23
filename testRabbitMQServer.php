@@ -148,7 +148,7 @@ function emailList(){
 
 
 //function to make a new bracker with the first user 
-function makeBracket($bracketName, $userID){
+function makeBracket($bracketName, $username){
 	
 	//databaseConn();
 	$servername = "localhost";
@@ -162,9 +162,10 @@ function makeBracket($bracketName, $userID){
 	} else {
 		echo "SQL Connection Successful\n";
 	}
-	$stmt = $conn->prepare("INSERT INTO brackets (bracketName, player1ID, player1Score) VALUES ( ?, ?, 0 )");
-	$stmt->bind_param('si', $bracketName, $userID);
+	$stmt = $conn->prepare("INSERT INTO brackets (bracketName, player1Name, player1Score) VALUES ( ?, ?, 0 )");
+	$stmt->bind_param('ss', $bracketName, $username);
 	$stmt->execute();
+	return 1;
 	$conn->close();
 }
 
@@ -193,7 +194,7 @@ function getBracket($bracketName){
 
 
 //add a player to a specific bracket off of their userID
-function addPlayer($bracketName, $userID){
+function addPlayer($bracketName, $username){
 	
 	//databaseConn();
 	$servername = "localhost";
@@ -209,18 +210,18 @@ function addPlayer($bracketName, $userID){
 	}
 	
 	//iterate through player slots until an empty one is found
-	$result1 = $conn->query("SELECT player2ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player2ID = $result1->fetch_all();
+	$result1 = $conn->query("SELECT player2Name FROM brackets WHERE bracketName = '$bracketName'");
+	$player2Name = $result1->fetch_all();
 	mysqli_free_result($result1);
-	print_r($player2ID);
-	$result2 = $conn->query("SELECT player3ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player3ID = $result2->fetch_all();
+	//print_r($player2Name);
+	$result2 = $conn->query("SELECT player3Name FROM brackets WHERE bracketName = '$bracketName'");
+	$player3Name = $result2->fetch_all();
 	mysqli_free_result($result2);
-	$result3 = $conn->query("SELECT player4ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player4ID = $result3->fetch_all();
+	$result3 = $conn->query("SELECT player4Name FROM brackets WHERE bracketName = '$bracketName'");
+	$player4Name = $result3->fetch_all();
 	mysqli_free_result($result3);
-	if ($player2ID[0][0] == 0) {
-		$sql = "UPDATE brackets SET player2ID = $userID WHERE bracketName = '$bracketName'";
+	if ($player2Name[0][0] == '') {
+		$sql = "UPDATE brackets SET player2Name = '$username' WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Player added successfully";
 		}
@@ -230,8 +231,8 @@ function addPlayer($bracketName, $userID){
 		}
 		return 1;
 	}
-	elseif ($player3ID[0][0] == 0) {
-		$sql = "UPDATE brackets SET player3ID = $userID WHERE bracketName = '$bracketName'";
+	elseif ($player3Name[0][0] == '') {
+		$sql = "UPDATE brackets SET player3Name = '$username' WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Player added successfully";
 		}
@@ -240,8 +241,8 @@ function addPlayer($bracketName, $userID){
 		}
 		return 1;
 	}
-	elseif ($player4ID[0][0] == 0) {
-		$sql = "UPDATE brackets SET player4ID = $userID WHERE bracketName = '$bracketName'";
+	elseif ($player4Name[0][0] == '') {
+		$sql = "UPDATE brackets SET player4Name = '$username' WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Player added successfully";
 		}
@@ -261,7 +262,11 @@ function addPlayer($bracketName, $userID){
 
 
 //add drivers and pit crew to a certain player in a specific bracket
+<<<<<<< HEAD
 function addCrew($driver1, $driver2, $pitCrew) {
+=======
+function addCrew($bracketName, $playerName, $driver1, $driver2, $pitCrew) {
+>>>>>>> ce4f592d71e7a0ca29bde58c4cd6e13ae1e0750c
 
 	//databaseConn();
 	$servername = "localhost";
@@ -278,19 +283,19 @@ function addCrew($driver1, $driver2, $pitCrew) {
 	
 	//iterate through player slots until an empty one is found
 	//todo: improve this
-	$result1 = $conn->query("SELECT player1ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player1ID = $result1->fetch_all();
+	$result1 = $conn->query("SELECT player1Name FROM brackets WHERE bracketName = '$bracketName'");
+	$player1Name = $result1->fetch_all();
 	mysqli_free_result($result1);
-	$result2 = $conn->query("SELECT player2ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player2ID = $result2->fetch_all();
+	$result2 = $conn->query("SELECT player2Name FROM brackets WHERE bracketName = '$bracketName'");
+	$player2Name = $result2->fetch_all();
 	mysqli_free_result($result2);
-	$result3 = $conn->query("SELECT player3ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player3ID = $result3->fetch_all();
+	$result3 = $conn->query("SELECT player3Name FROM brackets WHERE bracketName = '$bracketName'");
+	$player3Name = $result3->fetch_all();
 	mysqli_free_result($result3);
-	$result4 = $conn->query("SELECT player4ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player4ID = $result4->fetch_all();
+	$result4 = $conn->query("SELECT player4Name FROM brackets WHERE bracketName = '$bracketName'");
+	$player4Name = $result4->fetch_all();
 	mysqli_free_result($result4);
-	if ($playerID == $player1ID[0][0]){
+	if ($playerName == $player1Name[0][0]){
 		$sql = "UPDATE brackets SET player1Driver1 = '$driver1', player1Driver2 = '$driver2', player1PitCrew = '$pitCrew' WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Crew added successfully";
@@ -299,7 +304,7 @@ function addCrew($driver1, $driver2, $pitCrew) {
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 	}
-	elseif ($playerID == $player2ID[0][0]) {
+	elseif ($playerName == $player2Name[0][0]) {
 		$sql = $sql = "UPDATE brackets SET player2Driver1 = '$driver1', player2Driver2 = '$driver2', player2PitCrew = '$pitCrew' WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Crew added successfully";
@@ -308,7 +313,7 @@ function addCrew($driver1, $driver2, $pitCrew) {
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 	}
-	elseif ($playerID == $player3ID[0][0]){
+	elseif ($playerName == $player3Name[0][0]){
 		$sql = $sql = "UPDATE brackets SET player2Driver1 = '$driver1', player2Driver2 = '$driver2', player2PitCrew = '$pitCrew' WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Crew added successfully";
@@ -317,7 +322,7 @@ function addCrew($driver1, $driver2, $pitCrew) {
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 	}
-	elseif ($playerID == $player4ID[0][0]){
+	elseif ($playerName == $player4Name[0][0]){
 		$sql = $sql = "UPDATE brackets SET player2Driver1 = '$driver1', player2Driver2 = '$driver2', player2PitCrew = '$pitCrew' WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Crew added successfully";
@@ -336,7 +341,7 @@ function addCrew($driver1, $driver2, $pitCrew) {
 
 
 //update the score for a specific player in a specific bracket
-function updateScore($bracketName, $playerID, $score){
+function updateScore($bracketName, $playerName, $score){
 	
 	//databaseConn();
 	$servername = "localhost";
@@ -353,19 +358,19 @@ function updateScore($bracketName, $playerID, $score){
 	
 	//iterate through player slots until the correct one is found
 	//todo: improve this
-	$result1 = $conn->query("SELECT player1ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player1ID = $result1->fetch_all();
+	$result1 = $conn->query("SELECT player1Name FROM brackets WHERE bracketName = '$bracketName'");
+	$player1Name = $result1->fetch_all();
 	mysqli_free_result($result1);
-	$result2 = $conn->query("SELECT player2ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player2ID = $result2->fetch_all();
+	$result2 = $conn->query("SELECT player2Name FROM brackets WHERE bracketName = '$bracketName'");
+	$player2Name = $result2->fetch_all();
 	mysqli_free_result($result2);
-	$result3 = $conn->query("SELECT player3ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player3ID = $result3->fetch_all();
+	$result3 = $conn->query("SELECT player3Name FROM brackets WHERE bracketName = '$bracketName'");
+	$player3Name = $result3->fetch_all();
 	mysqli_free_result($result3);
-	$result4 = $conn->query("SELECT player4ID FROM brackets WHERE bracketName = '$bracketName'");
-	$player4ID = $result4->fetch_all();
+	$result4 = $conn->query("SELECT player4Name FROM brackets WHERE bracketName = '$bracketName'");
+	$player4Name = $result4->fetch_all();
 	mysqli_free_result($result4);
-	if ($playerID == $player1ID[0][0]){
+	if ($playerName == $player1Name[0][0]){
 		$sql = "UPDATE brackets SET player1Score = $score WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Score updated successfully";
@@ -374,7 +379,7 @@ function updateScore($bracketName, $playerID, $score){
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 	}
-	elseif ($playerID == $player2ID[0][0]){
+	elseif ($playerName == $player2Name[0][0]){
 		$sql = "UPDATE brackets SET player2Score = $score WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Score updated successfully";
@@ -383,7 +388,7 @@ function updateScore($bracketName, $playerID, $score){
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 	}
-	elseif ($playerID == $player3ID[0][0]){
+	elseif ($playerName == $player3Name[0][0]){
 		$sql = "UPDATE brackets SET player3Score = $score WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Score updated successfully";
@@ -392,7 +397,7 @@ function updateScore($bracketName, $playerID, $score){
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}
 	}
-	elseif ($playerID == $player4ID[0][0]){
+	elseif ($playerName == $player4Name[0][0]){
 		$sql = "UPDATE brackets SET player4Score = $score WHERE bracketName = '$bracketName'";
 		if ($conn->query($sql) === TRUE) {
 			echo "Score updated successfully";
@@ -501,15 +506,15 @@ function requestProcessor($request)
     case "EmailList":
       return emailList();
     case "MakeBracket":
-      return makeBracket($request['bracketName'], $request['userID']);
+      return makeBracket($request['bracketName'], $request['username']);
     case "GetBracket":
       return getBracket($request['bracketName']);
     case "AddPlayer":
-      return addPlayer($request['bracketName'], $request['userID']); 
+      return addPlayer($request['bracketName'], $request['username']); 
     case "AddCrew":
-      return addCrew($request['bracketName'], $request['playerID'], $request['driver1'], $request['driver2'], $request['pitCrew']);
+      return addCrew($request['bracketName'], $request['playerName'], $request['driver1'], $request['driver2'], $request['pitCrew']);
     case "UpdateScore":
-      return updateScore($request['bracketName'], $request['playerID'], $request['score']);
+      return updateScore($request['bracketName'], $request['playerName'], $request['score']);
     case "AddComment":
       return addComment($request['username'], $request['commentText']);
     case "GetComments":
