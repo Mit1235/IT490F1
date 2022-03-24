@@ -1,15 +1,14 @@
 <?php 
 
 error_reporting(E_ALL);
-ini_set('display_errors', 'Off');
+ini_set('display_errors', 'On');
 ini_set('log_errors', 'On');
-ini_set('error_log', '/home/parallels/IT490F1/IT490F1/errorlog.txt');
+ini_set('error_log', 'errorlog.txt');
 
 //Requried files
-require_once('/home/parallels/git/IT490F1/IT490F1/path.inc');
-require_once('/home/parallels/git/IT490F1/IT490F1/get_host_info.inc');
-require_once('/home/parallels/git/IT490F1/IT490F1/rabbitMQLib.inc');
-require_once('/home/parallels/git/IT490F1/IT490F1/errorlog.php');
+require_once('path.inc');
+require_once('get_host_info.inc');
+require_once('rabbitMQLib.inc');
 
 function requestProcessor($request){
         echo "received request".PHP_EOL;
@@ -23,7 +22,7 @@ function requestProcessor($request){
 
 	switch($request['type'])
 	{
-	case "parallels":
+	case "errors":
 		echo "Errors";
 		$response_msg = file_get_contents('errorlog.txt', $request['error_string'], FILE_APPEND);
 		
@@ -34,8 +33,10 @@ function requestProcessor($request){
 
 }
 
-$server = new RabbitMQServer('log1.ini', 'testserver');
-echo "Error in Database Server START\N";
+
+$server = new RabbitMQServer('log1.ini', 'errorExchange');
+echo "started";
 $server->process_requests('requestProcessor');
+
 
 ?>
