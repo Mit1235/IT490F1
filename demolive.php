@@ -1,5 +1,12 @@
 <?php
+
+
 $curl = curl_init();
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'Off');
+ini_set('log_errors', 'On');
+ini_set('error_log',"errorlog.txt");
 
 curl_setopt_array($curl, array(
     CURLOPT_URL => 'http://ergast.com/api/f1/current/last/results.json',

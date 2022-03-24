@@ -4,13 +4,19 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
 
+error_reporting(E_ALL);
+ini_set('display_errors', 'Off');
+ini_set('log_errors', 'On');
+ini_set('error_log',"errorlog.txt");
+
+
 function history($msg)
 {
 	
 	$curl = curl_init();
 $test = "last";
 curl_setopt_array($curl, array(
-	CURLOPT_URL => "http://ergast.com/api/f1/current/{$test}/results",
+	CURLOPT_URL => "http://ergast.com/api/f1/current/last/results.json",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_ENCODING => "",
@@ -28,6 +34,7 @@ curl_close($curl);
 if ($err) {
     echo "cURL Error #:" . $err;
 } else {
+	//	echo $response;	
 	return $response;
 	}	
 	
@@ -46,11 +53,11 @@ function requestProcessor($request)
     case "history":
       return history($request['msg']);
   }
-  return array("returnCode" => '0', 'message'=>"Server received request and processed");
+  return array("worked");
 }
 
 
-$server = new rabbitMQServer("testRabbitMQ.ini","testServer");
+$server = new rabbitMQServer("history.ini","testServer");
 
 echo "testRabbitMQServer BEGIN".PHP_EOL;
 $server->process_requests('requestProcessor');

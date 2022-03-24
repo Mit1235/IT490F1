@@ -16,15 +16,15 @@ require_once('rabbitMQLib.inc');
 error_reporting(E_ALL);
 ini_set('display_errors', 'Off');
 ini_set('log_errors', 'On');
-ini_set('error_log',"/home/parallels/git/IT490F1/IT490F1/errorlog.txt");
+ini_set('error_log',"errorlog.txt");
 $displayErrors = ini_get('display_errors');
-$errorLog = ini_get('error_log',"/home/parallels/git/IT490F1/IT490F1/errorlog.txt");
+$errorLog = ini_get('error_log',"errorlog.txt");
 $errorMessage('This is an error');
 
 //this is what reads the local files
 
 
-$file = file_get_contents("/home/parallels/git/IT490F1/IT490F1/errorlog.txt");
+$file = file_get_contents("errorlog.txt");
 $fwrite($file, $errorLog, $displayErrors);
 $errorArray = [];
 $request = array();
@@ -36,7 +36,7 @@ function our_errors($errorMessage){
         fwrite($errorLog, $errorMessage);
 	fclose($errorLog);
 }
-file_put_contents ("/home/parallels/git/IT490F1/IT490F1/errorlog.txt", FILE_APPEND);               
+file_put_contents ("errorlog.txt", FILE_APPEND);               
 
 
 ?>

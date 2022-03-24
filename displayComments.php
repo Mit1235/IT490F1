@@ -19,7 +19,6 @@ require('connect.php');
 </head>
 <body>
 
-</div>
 <div class="container">
 	<div class="col-md-8">
 
@@ -45,12 +44,8 @@ require('connect.php');
 		  		</div>
 		  	</div>
 		  	<br>
-		  	<?php } ?>
 		  </div>
 		</div>
-	</div>
-	<div class="col-md-4">
-
 	</div>
 </div>
 </body>
