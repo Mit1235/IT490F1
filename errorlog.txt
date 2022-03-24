@@ -143,3 +143,81 @@ Stack trace:
 #0 /home/parallels/git/IT490F1/IT490F1/errorlog.php(27): createClientforRMQ()
 #1 {main}
   thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 55
+[20-Mar-2022 00:01:08 America/New_York] PHP Notice:  Undefined variable: error_message in /home/parallels/git/IT490F1/IT490F1/dbListener.php on line 19
+[20-Mar-2022 00:01:08 America/New_York] 
+[20-Mar-2022 00:01:08 America/New_York] PHP Warning:  require_once(home/parallels/git/IT490F1/IT490F1/errorlog.php): failed to open stream: No such file or directory in /home/parallels/git/IT490F1/IT490F1/dbListener.php on line 27
+[20-Mar-2022 00:01:08 America/New_York] PHP Fatal error:  require_once(): Failed opening required 'home/parallels/git/IT490F1/IT490F1/errorlog.php' (include_path='.:/usr/share/php:/home/dkehoe/git/system_integration') in /home/parallels/git/IT490F1/IT490F1/dbListener.php on line 27
+[20-Mar-2022 12:03:27 America/New_York] PHP Notice:  Undefined variable: error_message in /home/parallels/git/IT490F1/IT490F1/dbListener.php on line 19
+[20-Mar-2022 12:03:27 America/New_York] 
+[20-Mar-2022 12:03:27 America/New_York] PHP Warning:  require_once(home/parallels/git/IT490F1/IT490F1/errorlog.php): failed to open stream: No such file or directory in /home/parallels/git/IT490F1/IT490F1/dbListener.php on line 27
+[20-Mar-2022 12:03:27 America/New_York] PHP Fatal error:  require_once(): Failed opening required 'home/parallels/git/IT490F1/IT490F1/errorlog.php' (include_path='.:/usr/share/php:/home/dkehoe/git/system_integration') in /home/parallels/git/IT490F1/IT490F1/dbListener.php on line 27
+[20-Mar-2022 12:11:02 America/New_York] PHP Notice:  Undefined variable: error_message in /home/parallels/git/IT490F1/IT490F1/dbListener.php on line 19
+[20-Mar-2022 12:11:02 America/New_York] 
+[20-Mar-2022 12:11:02 America/New_York] PHP Warning:  require_once(home/parallels/git/IT490F1/IT490F1/errorlog.php): failed to open stream: No such file or directory in /home/parallels/git/IT490F1/IT490F1/dbListener.php on line 27
+[20-Mar-2022 12:11:02 America/New_York] PHP Fatal error:  require_once(): Failed opening required 'home/parallels/git/IT490F1/IT490F1/errorlog.php' (include_path='.:/usr/share/php:/home/dkehoe/git/system_integration') in /home/parallels/git/IT490F1/IT490F1/dbListener.php on line 27
+This is an error message![20-Mar-2022 14:52:21 America/New_York] PHP Warning:  ini_get() expects exactly 1 parameter, 2 given in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 25
+[20-Mar-2022 14:52:21 America/New_York] PHP Notice:  Undefined variable: errorMessage in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 26
+[20-Mar-2022 14:52:21 America/New_York] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/parallels/git/IT490F1/IT490F1/errorlog.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 26
+[20-Mar-2022 17:33:05 America/New_York] PHP Warning:  ini_get() expects exactly 1 parameter, 2 given in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 25
+[20-Mar-2022 17:33:05 America/New_York] PHP Notice:  Undefined variable: errorMessage in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 26
+[20-Mar-2022 17:33:05 America/New_York] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/parallels/git/IT490F1/IT490F1/errorlog.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 26
+[20-Mar-2022 20:47:12 America/New_York] PHP Warning:  ini_get() expects exactly 1 parameter, 2 given in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 25
+[20-Mar-2022 20:47:12 America/New_York] PHP Notice:  Undefined variable: errorMessage in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 26
+[20-Mar-2022 20:47:12 America/New_York] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/parallels/git/IT490F1/IT490F1/errorlog.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 26
+[20-Mar-2022 22:20:54 America/New_York] PHP Warning:  ini_get() expects exactly 1 parameter, 2 given in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 25
+[20-Mar-2022 22:20:54 America/New_York] PHP Notice:  Undefined variable: errorMessage in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 26
+[20-Mar-2022 22:20:54 America/New_York] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/parallels/git/IT490F1/IT490F1/errorlog.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 26
+[20-Mar-2022 23:25:11 America/New_York] PHP Warning:  ini_get() expects exactly 1 parameter, 2 given in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 25
+[20-Mar-2022 23:25:11 America/New_York] PHP Notice:  Undefined variable: errorMessage in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 26
+[20-Mar-2022 23:25:11 America/New_York] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/parallels/git/IT490F1/IT490F1/errorlog.php:26
+Stack trace:
+#0 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 26
+[21-Mar-2022 00:00:53 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home/parallels/git/IT490F1/IT490F1/connect.php:2
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/postingComments.php(8): require()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/connect.php on line 2
+[21-Mar-2022 00:27:06 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home/parallels/git/IT490F1/IT490F1/connect.php:2
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/postingComments.php(8): require()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/connect.php on line 2
+[21-Mar-2022 00:28:19 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home/parallels/git/IT490F1/IT490F1/connect.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/connect.php on line 9
+[21-Mar-2022 00:30:02 America/New_York] PHP Notice:  Undefined variable: log_file in /home/parallels/git/IT490F1/IT490F1/index.php on line 11
+[21-Mar-2022 00:30:02 America/New_York] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/parallels/git/IT490F1/IT490F1/index.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/index.php on line 11
+[21-Mar-2022 01:13:39 America/New_York] PHP Warning:  ini_get() expects exactly 1 parameter, 2 given in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 21
+[21-Mar-2022 01:13:39 America/New_York] PHP Notice:  Undefined variable: errorMessage in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 22
+[21-Mar-2022 01:13:39 America/New_York] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/parallels/git/IT490F1/IT490F1/errorlog.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 22
+[21-Mar-2022 18:21:08 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect() in /home/parallels/git/IT490F1/IT490F1/connect.php:9
+Stack trace:
+#0 /home/parallels/git/IT490F1/IT490F1/postingComments.php(8): require()
+#1 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/connect.php on line 9
+[23-Mar-2022 12:29:02 America/New_York] PHP Warning:  ini_get() expects exactly 1 parameter, 2 given in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 21
+[23-Mar-2022 12:29:02 America/New_York] PHP Notice:  Undefined variable: errorMessage in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 22
+[23-Mar-2022 12:29:02 America/New_York] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/parallels/git/IT490F1/IT490F1/errorlog.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/parallels/git/IT490F1/IT490F1/errorlog.php on line 22

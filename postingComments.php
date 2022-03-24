@@ -1,4 +1,10 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'Off');
+ini_set('log_errors', 'On');
+ini_set('error_log',"/home/parallels/git/IT490F1/IT490F1/errorlog.txt");
+
 require('connect.php');
 
 if(isset($_POST) & !empty($_POST)){
@@ -69,6 +75,6 @@ if(isset($_POST) & !empty($_POST)){
 	</div>
 </div>
 </body>
-</html>1
+</html>
 
 
