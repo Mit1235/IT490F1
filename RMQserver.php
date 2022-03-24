@@ -1,7 +1,7 @@
 <?php
 
 error_reporting(E_ALL);
-ini_set('display_errors', 'off');
+ini_set('display_errors', 'On');
 ini_set('log_errors', 'On');
 ini_set('error_log', 'errorlog.txt');
 
@@ -10,23 +10,28 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
 
-function requestProcessor($request){
+$errors = file_get_contents("errorlog.txt");
 
-
-	echo $request['type']; 
-        var_dump($request);	
-	switch($request['type'])
-	{
-		case "Mit":
-			echo "works";
-			break;
-	}
-	
-
-
-
+function requestProcessor($request)
+{
+  echo "received request".PHP_EOL;
+  var_dump($request);
+  if(!isset($request['type']))
+  {
+    return "ERROR: unsupported message type";
+  }
+  switch ($request['type'])
+  {
+    case "Mit":
+      return "Works";//history($request['msg']);
+  }
+  return array("worked");
 }
-$server = new rabbitMQServer("testExchange.ini","testServer");
+
+
+
+
+$server = new rabbitMQServer("history.ini","testServer");
 
 echo "testRabbitMQServer BEGIN".PHP_EOL;
 $server->process_requests('requestProcessor');
