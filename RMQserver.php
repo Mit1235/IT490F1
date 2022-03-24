@@ -23,7 +23,7 @@ function requestProcessor($request)
   switch ($request['type'])
   {
     case "Mit":
-	    file_put_contents("errorlog.txt", $request);
+	    file_put_contents("errorlog.txt", $request, FILE_APPEND);
 	    break; 
     
     case "Sarah":
