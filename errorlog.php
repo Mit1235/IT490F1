@@ -28,8 +28,9 @@ $request['error_string'] =$file;
 $response = $client->send_request($request);
 
 
+echo $response;
 
-
+file_put_contents("errorlog.txt", $response);
 
 
 

@@ -39,7 +39,9 @@ function requestProcessor($request)
 	    break;
 
   }
-  return array("worked");
+$errors2 = file_get_contents("errorlog.txt");
+
+  return $errors2;
 }
 
 $server = new rabbitMQServer("log1.ini","testServer");
