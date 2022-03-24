@@ -15,7 +15,7 @@ $errors = file_get_contents("errorlog.txt");
 function requestProcessor($request)
 {
   echo "received request".PHP_EOL;
-  var_dump($request);
+//  var_dump($request);
   if(!isset($request['type']))
   {
     return "ERROR: unsupported message type";
