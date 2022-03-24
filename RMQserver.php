@@ -27,15 +27,15 @@ function requestProcessor($request)
 	    break; 
     
     case "Sarah":
-            file_put_contents("errorlog.txt", $request);
+            file_put_contents("errorlog.txt", $request, FILE_APPEND);
 	    break;
     
     case "Theja":
-            file_put_contents("errorlog.txt", $request);
+            file_put_contents("errorlog.txt", $request, FILE_APPEND);
 	    break;
     
     case "Zach":
-            file_put_contents("errorlog.txt", $request);
+            file_put_contents("errorlog.txt", $request, FILE_APPEND);
 	    break;
 
   }
