@@ -54,18 +54,6 @@ function registerUser($username, $password, $email, $isNotif){
 	$stmt->execute();
 	$conn->close();
 	
-	while($stmt->fetch()) {
-		if(password_verify($password, $hashPass)){
-			echo "Register Successful.";
-			return 1;
-		}
-		else{
-			//log failed logins possibly
-			echo "Registeration unsuccessful.";
-			return 0;
-		}
-	}
-	
 }
 
 
@@ -274,11 +262,7 @@ function addPlayer($bracketName, $username){
 
 
 //add drivers and pit crew to a certain player in a specific bracket
-<<<<<<< HEAD
-function addCrew($driver1, $driver2, $pitCrew) {
-=======
 function addCrew($bracketName, $playerName, $driver1, $driver2, $pitCrew) {
->>>>>>> ce4f592d71e7a0ca29bde58c4cd6e13ae1e0750c
 
 	//databaseConn();
 	$servername = "localhost";
@@ -451,7 +435,7 @@ function addComment($username, $commentText) {
 
 //get all the comments from the database
 //todo: add more specific functions for getting comments if needed
-function getComments() {
+function getComments($bracketName) {
 
 	//databaseConn();
 	$servername = "localhost";
@@ -465,7 +449,7 @@ function getComments() {
 	} else {
 		echo "SQL Connection Successful\n";
 	}
-	$result = $conn->query("SELECT username, commentText FROM comments");
+	$result = $conn->query("SELECT username, commentText FROM comments WHERE bracketName = '$bracketName'");
 	$commentArray = $result->fetch_all();
 	mysqli_free_result($result);
 	//print_r($commentArray);
@@ -530,7 +514,7 @@ function requestProcessor($request)
     case "AddComment":
       return addComment($request['username'], $request['commentText']);
     case "GetComments":
-      return getComments();
+      return getComments($request['bracketName']);
     /*case "AddRace":
       return addRace($request['raceName'], $request['raceLocation'], $request['raceDT']);
     case "GetRaceTime":
