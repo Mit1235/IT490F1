@@ -23,7 +23,7 @@ else
 }
 
 $request = array();
-$request ['type'] = "Mit";
+$request ['type'] = "Zack";
 $request['error_string'] =$file;
 $response = $client->send_request($request);
 
