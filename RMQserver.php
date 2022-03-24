@@ -23,15 +23,26 @@ function requestProcessor($request)
   switch ($request['type'])
   {
     case "Mit":
-      return "Works";//history($request['msg']);
+	    file_put_contents("errorlog.txt", $request);
+	    break; 
+    
+    case "Sarah":
+            file_put_contents("errorlog.txt", $request);
+	    break;
+    
+    case "Theja":
+            file_put_contents("errorlog.txt", $request);
+	    break;
+    
+    case "Zach":
+            file_put_contents("errorlog.txt", $request);
+	    break;
+
   }
   return array("worked");
 }
 
-
-
-
-$server = new rabbitMQServer("history.ini","testServer");
+$server = new rabbitMQServer("log1.ini","testServer");
 
 echo "testRabbitMQServer BEGIN".PHP_EOL;
 $server->process_requests('requestProcessor');
