@@ -12,7 +12,7 @@ ini_set('error_log',"errorlog.txt");
 
 $file = file_get_contents("errorlog.txt");
 
-$client = new rabbitMQClient("history.ini","testServer");
+$client = new rabbitMQClient("log1.ini","testServer");
 if (isset($argv[1]))
 {
   $msg = $argv[1];
@@ -23,7 +23,7 @@ else
 }
 
 $request = array();
-$request ['type'] = "error";
+$request ['type'] = "Mit";
 $request['error_string'] =$file;
 $response = $client->send_request($request);
 
