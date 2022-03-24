@@ -28,7 +28,7 @@ $errorMessage('This is an error');
 //this is what reads the local files
 
 
-$file = file_get_contents("/home/parallels/git/IT490F1/IT490F1/errorlog.txt");
+$file = file_get_contents("errorlog.txt");
 $fwrite($file, $errorLog, $displayErrors);
 $errorArray = [];
 $request = array();
