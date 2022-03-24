@@ -5,7 +5,6 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
 
-function Client($request){
 
 
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
@@ -33,4 +32,3 @@ else
 		echo "\n\n";
 		echo $argv[0]." END".PHP_EO;
 
-}

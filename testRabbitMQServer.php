@@ -54,6 +54,18 @@ function registerUser($username, $password, $email, $isNotif){
 	$stmt->execute();
 	$conn->close();
 	
+	while($stmt->fetch()) {
+		if(password_verify($password, $hashPass)){
+			echo "Register Successful.";
+			return 1;
+		}
+		else{
+			//log failed logins possibly
+			echo "Registeration unsuccessful.";
+			return 0;
+		}
+	}
+	
 }
 
 
