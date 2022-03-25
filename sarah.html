@@ -14,11 +14,11 @@
 <table>
         <form>
         <h2>Bracket Search</h2>
-        <label for="Bracket Search">Find a bracket!</label><br>
+        <label for="Bracket Search"></label><br>
 <br>
-        <input type="text" id="Bracket Name" name="Bracket Name" value=""><br>
+        <input type="text" id="Bracket_Name" name="Bracket_Name" value=""><br>
         <h2>Comments</h2>
-        <form action="post_comment.php" method="post" id="commentform">
+        <form action="sarah.php">
         <label for="comment_author" class="required">Your name</label>
         <input type="text" name="comment_author" id="comment_author" value="" tabindex="1" required="required">
         <br>
@@ -34,18 +34,6 @@
 </table>
 </div>
 
-<?php
-$client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
-        $request = array();
-        $request['type'] = "GetComments";
-        $request['type'] = "bracketName";
-?>
-<?php foreach($response as $innerArray): ?> 
-        <tr>
-        <td> <?php echo $innerArray[0]?></td>
-        <td> <?php echo $innerArray[1]?></td>
-        </tr>
-        <?php endforeach; ?>
 
 </body>
 </html>
