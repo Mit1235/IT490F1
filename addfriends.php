@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Your League</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
 </head>
 <body>
-<form action="CreateBracket.php">
-  <input type="text" id="bracketName" name="bracketName" value="What is the name of your league"><br>
-  <input type="text" id="username" name="username" value="Enter Your Name"><br>
 
-  <input type="submit" value="Submit">
-</form>
-<a href="addfriends.php">
-   <button>Add Friends!</button>
-</a>
-
-
-<form action="addCrew.php">
-<h2>Pick Your team!</h2>
+<h1>Create Your league</h1>
+  <form action="functions.inc.php">
+    <h1>Add a Friend!</h1>
+    <label for="bracketName"><b>Bracket Name</b></label>
+    <input type="text" placeholder="bracketName" name="bracketName" required>
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="username" name="username" required>
+    <button type="submit" class="btn">Continue</button>
+    <button type="button" class="btn cancel">Cancel</button>
+   </form>
+   <form action="addCrew.php">
+  <h2>Pick Your team!</h2>
 <h3>Choose your Drivers.</h3>
   <input type="checkbox" id="Valtteri Bottas" name="Valtteri Bottas" value="Valtteri Bottas">
   <label for="D1"> Valtteri Bottas</label><br>
@@ -58,9 +58,8 @@
   <label for="D19"> Alex Albon </label><br>
   <input type="checkbox" id="Nicholas Latifi" name="Nicholas Latifi" value="Nicholas Latifi">
   <label for="D20"> Nicholas Latifi </label><br>
-  <input type="submit" value="Submit">
 
-<h3>Choose your Pitt Crew</h3>
+<h3>Choose your Pitt Crew.</h3>
   <input type="checkbox" id="Alfa Romeo Racing-TBA" name="Alfa Romeo Racing-TBA" value="Alfa Romeo Racing-TBA">
   <label for="P1"> Alfa Romeo Racing-TBA</label><br>
   <input type="checkbox" id="AlphaTauri-Red Bull" name="AlphaTauri-Red Bull" value="AlphaTauri-Red Bull">
@@ -79,8 +78,10 @@
   <label for="P8"> Mercedes-AMG</label><br>
     <input type="checkbox" id="Red Bull Racing" name="Red Bull Racing" value="Red Bull Racing">
   <label for="P9"> Red Bull Racing</label><br>
+  <input type="submit" value="Submit">
 
 </form>
+</form>
+
 </body>
 </html>
-
