@@ -49,15 +49,11 @@ function registerUser($username, $password, $email, $isNotif){
 	
 	//section to hash a password
 	$hashPass = password_hash($password, PASSWORD_BCRYPT);
-	$stmt = $conn->prepare("INSERT INTO users VALUES ( '$username' , '$password' , '$email', '$isNotif')");
+	$stmt = $conn->prepare("INSERT INTO users (username, password, email, isNotif) VALUES ( ? , ? , ?, ?)");
 	$stmt->bind_param('sssi', $username, $hashPass, $email, $isNotif);
 	$stmt->execute();
 	$conn->close();
 	
-<<<<<<< HEAD
-	
-=======
->>>>>>> bbf3dc879dabc52b22278e0de2ac61ff8594167e
 }
 
 
@@ -266,12 +262,6 @@ function addPlayer($bracketName, $username){
 
 
 //add drivers and pit crew to a certain player in a specific bracket
-<<<<<<< HEAD
-
-function addCrew($driver1, $driver2, $pitCrew) {
-=======
-=======
->>>>>>> bbf3dc879dabc52b22278e0de2ac61ff8594167e
 function addCrew($bracketName, $playerName, $driver1, $driver2, $pitCrew) {
 
 	//databaseConn();
@@ -421,7 +411,7 @@ function updateScore($bracketName, $playerName, $score){
 }
 
 //add a comment and a username to the database
-function addComment($username, $commentText) {
+function addComment($bracketName, $username, $commentText) {
 
 	//databaseConn();
 	$servername = "localhost";
@@ -435,8 +425,8 @@ function addComment($username, $commentText) {
 	} else {
 		echo "SQL Connection Successful\n";
 	}
-	$stmt = $conn->prepare("INSERT INTO comments (username, commentText) VALUES ( ? , ?)");
-	$stmt->bind_param('ss', $username, $commentText);
+	$stmt = $conn->prepare("INSERT INTO comments (bracketName, username, commentText) VALUES (?,  ? , ?)");
+	$stmt->bind_param('sss', $bracketName, $username, $commentText);
 	$stmt->execute();
 	return 1;
 	$conn->close();
@@ -522,7 +512,7 @@ function requestProcessor($request)
     case "UpdateScore":
       return updateScore($request['bracketName'], $request['playerName'], $request['score']);
     case "AddComment":
-      return addComment($request['username'], $request['commentText']);
+      return addComment($request['bracketName'], $request['username'], $request['commentText']);
     case "GetComments":
       return getComments($request['bracketName']);
     /*case "AddRace":
