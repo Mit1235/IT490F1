@@ -6,55 +6,61 @@
     <title></title>
 </head>
 <body>
+
 <form>
   <label for="League">League Name</label><br>
   <input type="text" id="Lename" name="Lename" value="Please enter the name of the league"><br>
   <input type="submit" value="Submit">
-</form>
 
-<button id="btn">Create a League<button>
-<script src="index.js"></script>
-
-    <h2>Leaderboard</h2>
-        <table>
-            <tr>
+  <h2>Leaderboard</h2>
+              <tr>
                 <th>Name</th>
                 <th>Driver 1</th>
                 <th>Driver 2</th>
                 <th>Pit Crew</th>
                 <th>Score</th>
-            </tr>
-</table>
+		
+            </tr><br>
+	    <button id="btn">Create a League<button>
+</form>
+<script src="index.js"></script>
+<br>
 <table>
+	<form>
+	<h2>Bracket Search</h2>
+	<label for="Bracket Search">Find a bracket!</label><br>
+<br>
+        <input type="text" id="Bracket Name" name="Bracket Name" value=""><br>
+
         <h2>Comments</h2>
-            <tr>
-                <th>Name</th>
-                <th>Comment</th>
-            </tr>
+	<form action="post_comment.php" method="post" id="commentform">
+	<label for="comment_author" class="required">Your name</label>
+	<input type="text" name="comment_author" id="comment_author" value="" tabindex="1" required="required">
+	<br>
+	<label for="comment" class="required">Your message</label>
+	<textarea name="comment" id="comment" rows="5" tabindex="5"  required="required"></textarea>
+<br>
+	<input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID" />
+    <br>
+    	<input name="submit" type="submit" value="Submit Comment" />
 
+	</form>
 
+</table>
+</div>
 
 <?php
-
-
-
-$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
-        $request = array();
-        $request['type'] = "GetComments";
-    $response = $client->send_request($request);
-
-
-    foreach($response as &$innerArray){
-        echo "<tr>";
-        foreach($innerArray as &$value){
-        echo "<td>{$value}<td>";
-    }
-    echo "</tr>";
-}
+$client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
+	$request = array();
+	$request['type'] = "GetComments";
+        $request['type'] = "bracketName";
 ?>
-
-</table>
-
+<?php foreach($response as $innerArray): ?> 
+	<tr>
+	<td> <?php echo $innerArray[0]?></td>
+	<td> <?php echo $innerArray[1]?></td>
+	</tr>
+	<?php endforeach; ?>
 
 </body>
 </html>

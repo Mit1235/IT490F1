@@ -34,6 +34,7 @@ CREATE TABLE `users` (
 
 CREATE TABLE `comments` (
   `commentID` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `bracketName` varchar(40),
   `username` varchar(40) NOT NULL,
   `commentText` varchar(999) NOT NULL
 );
