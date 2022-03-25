@@ -49,22 +49,11 @@ function registerUser($username, $password, $email, $isNotif){
 	
 	//section to hash a password
 	$hashPass = password_hash($password, PASSWORD_BCRYPT);
-	$stmt = $conn->prepare("INSERT INTO users (username, password, email, isNotif) VALUES ( ? , ? , ?, ?)");
+	$stmt = $conn->prepare("INSERT INTO users VALUES ( '$username' , '$password' , '$email', '$isNotif')");
 	$stmt->bind_param('sssi', $username, $hashPass, $email, $isNotif);
 	$stmt->execute();
 	$conn->close();
 	
-	while($stmt->fetch()) {
-		if(password_verify($password, $hashPass)){
-			echo "Register Successful.";
-			return 1;
-		}
-		else{
-			//log failed logins possibly
-			echo "Registeration unsuccessful.";
-			return 0;
-		}
-	}
 	
 }
 
@@ -274,7 +263,7 @@ function addPlayer($bracketName, $username){
 
 
 //add drivers and pit crew to a certain player in a specific bracket
-<<<<<<< HEAD
+
 function addCrew($driver1, $driver2, $pitCrew) {
 =======
 function addCrew($bracketName, $playerName, $driver1, $driver2, $pitCrew) {

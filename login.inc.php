@@ -10,9 +10,7 @@ session_start();
 
 
 
-$client = new rabbitMQCLient("testRabbitMQ.ini", "testServer");
-$response = $client->send_request($request);
-echo $response;
+$client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
 
 
 $request = array();
@@ -20,10 +18,12 @@ $request['type'] = 'Login';
 $request['username'] = $_GET['username'];
 $request['password'] = $_GET['password'];
 
+$response = $client->send_request($request);
+echo $response;
 
 if($response == 1)
 {
-  header("Location: Create.php");
+  header("Location: Create.html");
 }
 else
 {
