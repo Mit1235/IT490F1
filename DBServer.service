@@ -1,0 +1,15 @@
+[Unit]
+Description=RABBITMQ Database Server Service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=on-failure
+TimeoutSec=0
+RestartSec=42
+User=zrt423
+ExecStart=/usr/bin/php /home/zrt423/git/IT490F1/testRabbitMQServer.php
+
+[Install]
+WantedBy=default.target
