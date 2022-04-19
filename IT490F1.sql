@@ -39,7 +39,11 @@ CREATE TABLE `comments` (
   `commentText` varchar(999) NOT NULL
 );
 
-
+CREATE TABLE `versions` (
+  `versionNo` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `versionName` varchar(40) NOT NULL,
+  `workingStatus` tinyint
+);
 /*ALTER TABLE `brackets`
   ADD PRIMARY KEY (`bracketID`);
 
