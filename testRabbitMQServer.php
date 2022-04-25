@@ -457,30 +457,122 @@ function getComments($bracketName) {
 	$conn->close();
 }
 
-/*function addRace($raceName, $raceLocation, $raceDT){
+function addVersion($versionName) {
 
-	databaseConn();
-	$sql = 'INSERT INTO races (raceName, raceLocation, raceDT) VALUES ( ? , ? , ?)';
-	if ($stmt->prepare($sql)) {
-		$stmt->bind_param('iss', $raceName, $raceLocation, $raceDT);
-		
-		if($stmt->execute()) {
-			echo "Race added successfully.";
-			return 1;
-		}
-		else {
-			echo "There was an error adding this race.";
-			return 0;
-		}
-	}
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+	
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}	
+	$stmt = $conn->prepare("INSERT INTO versions (versionName) VALUES (?)");
+	$stmt->bind_param('s', $versionName);
+	$stmt->execute();
+	
+	$result = $conn->query("SELECT versionNo FROM versions WHERE versionName = '$versionName'");
+	$versionNo = $result->fetch_all();
+	mysqli_free_result($result);
+	//print($versionNo[0][0]);
+	return $versionNo[0][0];
+	$conn->close();
+	
 }
 
-function getRaceDT($raceName){
+function updateVersion($workingStatus) {
 
-	databaseConn();
-	//code to retrieve the datetime from a race with the requested name
-	return 1;
-}*/
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+	
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}
+	
+	$result = $conn->query("SELECT versionNo FROM versions");
+	$versionNo = $result->fetch_all();
+	mysqli_free_result($result);
+	
+	$versionNo = $versionNo[count($versionNo) - 1][0];
+	
+	$sql = "UPDATE versions SET workingStatus = $workingStatus WHERE versionNo = '$versionNo'";
+	if ($conn->query($sql) === TRUE) {
+		echo "Score updated successfully";
+	}
+	else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+	
+	$result = $conn->query("SELECT versionNo FROM versions WHERE workingStatus = 2");
+	$versionNo = $result->fetch_all();
+	mysqli_free_result($result);
+	//print($versionNo[count($versionNo) - 1][0]);
+	//echo count($versionNo);
+	return $versionNo[count($versionNo) - 1][0];
+	$conn->close();
+	
+	
+}
+
+function latestVersion() {
+
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+	
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}
+	
+	$result = $conn->query("SELECT versionNo FROM versions");
+	$versionNo = $result->fetch_all();
+	mysqli_free_result($result);
+	print($versionNo[count($versionNo) - 1][0]);
+	//echo count($versionNo);
+	return $versionNo[count($versionNo) - 1][0];
+	$conn->close();
+
+}
+
+function latestWorkingVersion() {
+
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+	
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}
+	
+	$result = $conn->query("SELECT versionNo FROM versions WHERE workingStatus = 2");
+	$versionNo = $result->fetch_all();
+	mysqli_free_result($result);
+	print($versionNo[count($versionNo) - 1][0]);
+	//echo count($versionNo);
+	return $versionNo[count($versionNo) - 1][0];
+	$conn->close();
+
+}
 
 function requestProcessor($request)
 {
@@ -515,10 +607,14 @@ function requestProcessor($request)
       return addComment($request['bracketName'], $request['username'], $request['commentText']);
     case "GetComments":
       return getComments($request['bracketName']);
-    /*case "AddRace":
-      return addRace($request['raceName'], $request['raceLocation'], $request['raceDT']);
-    case "GetRaceTime":
-      return getRaceDT($request['raceName']);*/
+    case "AddVersion":
+      return addVersion($request['versionName']);
+    case "UpdateVersion":
+      return updateVersion($request['workingStatus']);
+    case "LatestVersion":
+      return latestVersion();
+    case "LatestWorkingVersion":
+      return latestWorkingVersion();
     case "validate_session":
       return doValidate($request['sessionId']);
   }
