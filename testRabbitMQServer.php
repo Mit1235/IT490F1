@@ -484,7 +484,7 @@ function addVersion($versionName) {
 	
 }
 
-function updateVersion($versionName, $workingStatus) {
+function updateVersion($workingStatus) {
 
 	//databaseConn();
 	$servername = "localhost";
@@ -498,7 +498,14 @@ function updateVersion($versionName, $workingStatus) {
 	} else {
 		echo "SQL Connection Successful\n";
 	}
-	$sql = "UPDATE versions SET workingStatus = $workingStatus WHERE versionName = '$versionName'";
+	
+	$result = $conn->query("SELECT versionNo FROM versions");
+	$versionNo = $result->fetch_all();
+	mysqli_free_result($result);
+	
+	$versionNo = $versionNo[count($versionNo) - 1][0];
+	
+	$sql = "UPDATE versions SET workingStatus = $workingStatus WHERE versionNo = '$versionNo'";
 	if ($conn->query($sql) === TRUE) {
 		echo "Score updated successfully";
 	}
@@ -506,7 +513,7 @@ function updateVersion($versionName, $workingStatus) {
 		echo "Error: " . $sql . "<br>" . $conn->error;
 	}
 	
-	$result = $conn->query("SELECT versionName FROM versions WHERE workingStatus = 2");
+	$result = $conn->query("SELECT versionNo FROM versions WHERE workingStatus = 2");
 	$versionNo = $result->fetch_all();
 	mysqli_free_result($result);
 	//print($versionNo[count($versionNo) - 1][0]);
@@ -515,6 +522,56 @@ function updateVersion($versionName, $workingStatus) {
 	$conn->close();
 	
 	
+}
+
+function latestVersion() {
+
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+	
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}
+	
+	$result = $conn->query("SELECT versionNo FROM versions");
+	$versionNo = $result->fetch_all();
+	mysqli_free_result($result);
+	print($versionNo[count($versionNo) - 1][0]);
+	//echo count($versionNo);
+	return $versionNo[count($versionNo) - 1][0];
+	$conn->close();
+
+}
+
+function latestWorkingVersion() {
+
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+	
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}
+	
+	$result = $conn->query("SELECT versionNo FROM versions WHERE workingStatus = 2");
+	$versionNo = $result->fetch_all();
+	mysqli_free_result($result);
+	print($versionNo[count($versionNo) - 1][0]);
+	//echo count($versionNo);
+	return $versionNo[count($versionNo) - 1][0];
+	$conn->close();
+
 }
 
 function requestProcessor($request)
@@ -553,7 +610,11 @@ function requestProcessor($request)
     case "AddVersion":
       return addVersion($request['versionName']);
     case "UpdateVersion":
-      return updateVersion($request['versionName'], $request['workingStatus']);
+      return updateVersion($request['workingStatus']);
+    case "LatestVersion":
+      return latestVersion();
+    case "LatestWorkingVersion":
+      return latestWorkingVersion();
     case "validate_session":
       return doValidate($request['sessionId']);
   }
