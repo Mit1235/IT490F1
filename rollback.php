@@ -25,10 +25,9 @@ print_r($response);
 echo "work";
 shell_exec("zip -r '$response'.zip historicaldata.php");
 shell_exec("scp -r /home/mit/git/IT490F1/'$response'.zip /home/mit/deployment");
-shell_exec("scp -r /home/mit/git/IT490F1/'$response'.zip mit@127.27.22.155:/home/mit/git/IT490F1/");
-shell_exec("ssh mit@127.27.22.155 cd git/IT490F1");
-shell_exec("ssh mit@127.27.22.155 unzip -o /home/mit/git/IT490F1/'$response'.zip");
-shell_exec("echo Vmpass1 | ssh -tt mit@127.27.22.155 sudo systemctl restart dmz.service");
+shell_exec("scp -r /home/mit/git/IT490F1/'$response'.zip mit@172.27.22.155:/home/mit/git/IT490F1/");
+shell_exec("ssh mit@172.27.22.155 unzip -o /home/mit/git/IT490F1/'$response'.zip -d /home/mit/git/IT490F1");
+shell_exec("echo Vmpass1 | ssh -tt mit@172.27.22.155 sudo systemctl restart dmz.service");
 
 
 }
@@ -49,7 +48,7 @@ $response3 = $client2->send_request($request3);
 
 shell_exec("ssh mit490@172.27.122.48 scp -r /home/mit490/deployment/'$response3'.zip mit@172.27.223.55:/home/mit/git/IT490F1/");
 shell_exec("unzip -o /home/mit/git/IT490F1/'$response3'.zip");
-shell_exec("echo Vmpass1 | sudo systemctl restart dmz.service");
+shell_exec("echo Vmpass1 |sudo systemctl restart dmz.service");
 echo $response3;
 
 }
