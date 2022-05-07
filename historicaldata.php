@@ -1,3 +1,4 @@
+//testing
 <?php
 require_once('path.inc');
 require_once('get_host_info.inc');
@@ -5,7 +6,7 @@ require_once('rabbitMQLib.inc');
 
 
 error_reporting(E_ALL);
-ini_set('display_errors', 'Off');
+ini_set('display_errors', 'On');
 ini_set('log_errors', 'On');
 ini_set('error_log',"errorlog.txt");
 
@@ -40,6 +41,98 @@ if ($err) {
 	
 }
 
+
+function drivers()
+{
+$curl = curl_init();
+$test = "last";
+curl_setopt_array($curl, array(
+        CURLOPT_URL => "http://ergast.com/api/f1/2022/driverStandings.json",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error #:" . $err;
+} else {
+        //      echo $response; 
+        return $response;
+        }
+
+}
+
+
+function constructors()
+{
+$curl = curl_init();
+$test = "last";
+curl_setopt_array($curl, array(
+        CURLOPT_URL => "http://ergast.com/api/f1/2022/driverStandings.json",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error #:" . $err;
+} else {
+        //      echo $response; 
+        return $response;
+        }
+
+}
+
+
+function races()
+{
+$curl = curl_init();
+$test = "last";
+curl_setopt_array($curl, array(
+        CURLOPT_URL => "http://ergast.com/api/f1/current.json",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error #:" . $err;
+} else {
+        //      echo $response; 
+        return $response;
+        }
+
+}
+
+
+
 function requestProcessor($request)
 {
   echo "received request".PHP_EOL;
@@ -51,7 +144,13 @@ function requestProcessor($request)
   switch ($request['type'])
   {
     case "history":
-      return history($request['msg']);
+	    return history($request['msg']);
+    case "driverStanding":
+	   return drivers(); 
+    case "constructorStanding":
+	    return constructors();
+    case "schedule":
+	    return races();
   }
   return array("worked");
 }
