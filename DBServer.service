@@ -4,7 +4,7 @@ After=network.target
 StartLimitIntervalSec=0
 
 [Service]
-Type=simple
+Type=Simple
 Restart=on-failure
 TimeoutSec=0
 RestartSec=42
