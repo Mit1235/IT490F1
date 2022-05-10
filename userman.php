@@ -51,11 +51,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
 <split>
-  <center>
         <div class="col">
           <h1><b>User Management</b><br></h1>
           
@@ -78,8 +74,14 @@ var loadFile = function(event) {
   <body>
     <div id= "container">
       <font size="5">
-        <form method="post">
-        <label for="pass">Current Password: </label>
+	<form method="post">
+	<label for="username">Username: </label>
+        <input type="username" id="pass" name="Username" placeholder="Enter curent username"/>
+        <br></br>
+        <label for="pass">Email: </label>
+        <input type="email" id="pass" name="Email" placeholder="Enter curent email"/>
+        <br></br>
+	<label for="pass">Current Password: </label>
         <input type="password" id="pass" name="password" placeholder="Enter curent password"/>
         <br><br>
         <label for="pass">New Password: </label>
@@ -92,8 +94,41 @@ var loadFile = function(event) {
         </form>
         
         
+<?php
 
-        
+function changePassword($username, $email, $newPass) {
+
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}
+
+	$hashNewPass = password_hash($newPass, PASSWORD_BCRYPT);
+
+
+	$sql = "UPDATE users SET password = '$hashNewPass' WHERE username = '$username' AND email = '$email'";
+	if ($conn->query($sql) === TRUE) {
+		echo "Password updated successfully";
+	}
+	else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+		return 1;
+	$conn->close();
+
+}
+
+
+?>
+
    
     </div>
   </body>

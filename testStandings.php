@@ -2,7 +2,11 @@
 
 
 $client = new rabbitMQClient("history.ini","testServer");
+
 if (isset($argv[1]))
+
+if(isset($argv[1]))
+
 {
   $msg = $argv[1];
 }
