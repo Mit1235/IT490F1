@@ -19,9 +19,9 @@ $client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
 
   $request = array();
        $request['type'] = "AddComment";
-        $request['bracketName'] = $_GET['Bracket_Name'];
-        $request['username'] = $_GET['comment_author'];
-        $request['commentText'] = $_GET['comment'];
+        $request['Bracket_Name'] = $_GET['Bracket_Name'];
+        $request['comment_author'] = $_GET['comment_author'];
+        $request['comment'] = $_GET['comment'];
 
 $response = $client->send_request($request);
         echo $response;
