@@ -1,6 +1,7 @@
 #!/usr/bin/php
 <?php
 
+//testing123
 //requirements
 require_once('path.inc');
 require_once('get_host_info.inc');
@@ -505,7 +506,7 @@ function updateVersion($workingStatus) {
 	
 	$versionNo = $versionNo[count($versionNo) - 1][0];
 	
-	$sql = "UPDATE versions SET workingStatus = $workingStatus WHERE versionNo = '$versionNo'";
+	$sql = "UPDATE versions SET workingStatus = $workingStatus WHERE versionNo = $versionNo";
 	if ($conn->query($sql) === TRUE) {
 		echo "Score updated successfully";
 	}
@@ -574,6 +575,36 @@ function latestWorkingVersion() {
 
 }
 
+function changePassword($username, $email, $newPass) {
+
+	//databaseConn();
+	$servername = "localhost";
+	$dbusername = "it490";
+	$dbpassword = "p@ssw0rd";
+	$dbname = "IT490F1";
+	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+	
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} else {
+		echo "SQL Connection Successful\n";
+	}
+	
+	$hashNewPass = password_hash($newPass, PASSWORD_BCRYPT);
+	
+		
+	$sql = "UPDATE users SET password = '$hashNewPass' WHERE username = '$username' AND email = '$email'";
+	if ($conn->query($sql) === TRUE) {
+		echo "Password updated successfully";
+	}
+	else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+		return 1;
+	$conn->close();
+	
+}
+
 function requestProcessor($request)
 {
   echo "received request".PHP_EOL;
@@ -615,6 +646,8 @@ function requestProcessor($request)
       return latestVersion();
     case "LatestWorkingVersion":
       return latestWorkingVersion();
+    case "ChangePassword":
+    	return changePassword($request['username'], $request['email'], $request['newPass']);
     case "validate_session":
       return doValidate($request['sessionId']);
   }
