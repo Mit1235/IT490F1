@@ -91,7 +91,7 @@ background-color: white;
 
 
 $client = new rabbitMQClient("history.ini","testServer");
-(isset($argv[1]))
+if(isset($argv[1]))
 {
   $msg = $argv[1];
 }
